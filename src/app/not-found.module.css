@@ -1,0 +1,135 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-lg);
+  background: radial-gradient(
+    ellipse at center,
+    var(--color-bg-secondary) 0%,
+    var(--color-bg) 70%
+  );
+}
+
+.content {
+  text-align: center;
+  max-width: 600px;
+}
+
+.glitch {
+  font-family: var(--font-display);
+  font-size: clamp(6rem, 20vw, 12rem);
+  font-weight: 700;
+  color: var(--color-text);
+  position: relative;
+  animation: glitch 2s infinite;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch::before {
+  color: var(--color-neon-cyan);
+  animation: glitch-1 2s infinite;
+  clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+}
+
+.glitch::after {
+  color: var(--color-neon-pink);
+  animation: glitch-2 2s infinite;
+  clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+}
+
+@keyframes glitch {
+  0%,
+  100% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+}
+
+@keyframes glitch-1 {
+  0%,
+  100% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(2px, -2px);
+  }
+  40% {
+    transform: translate(2px, 2px);
+  }
+  60% {
+    transform: translate(-2px, -2px);
+  }
+  80% {
+    transform: translate(-2px, 2px);
+  }
+}
+
+@keyframes glitch-2 {
+  0%,
+  100% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+}
+
+.message {
+  font-size: var(--text-xl);
+  color: var(--color-text-secondary);
+  margin: var(--space-xl) 0;
+  line-height: var(--leading-relaxed);
+  min-height: 3em;
+}
+
+.actions {
+  display: flex;
+  gap: var(--space-md);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glitch,
+  .glitch::before,
+  .glitch::after {
+    animation: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .actions {
+    flex-direction: column;
+    align-items: center;
+  }
+}

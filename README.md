@@ -1,36 +1,171 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# alpe.dev - Personal Website
+
+A fun, non-corporate personal website featuring a terminal simulation hero and smooth animations. Dark mode primary, with a self-deprecating/witty/absurdist tone.
+
+Built in 2 days with AI. Yes, really.
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|------------|
+| Framework | Next.js 15 (App Router) |
+| Language | TypeScript |
+| 3D | React Three Fiber + Drei |
+| Animations | GSAP + Framer Motion |
+| Styling | CSS Modules |
+| Blog | MDX |
+| Contact Form | Formspree |
+| Hosting | Vercel |
+
+## Features
+
+- **3D Hero Scene** - Floating tech logos, gaming icons, and a wireframe Shiba Inu
+- **Baby Countdown Widget** - Because being a soon-to-be dad is worth celebrating (with a progress bar)
+- **Gaming Stats Section** - Self-deprecating competitive gaming resume
+- **Contact Form** - Formspree integration for easy contact
+- **MDX Blog** - Version-controlled, flexible blog posts
+- **Dark Mode** - Neon cyan, pink, and purple accents
+- **Accessibility** - WCAG 2.1 AA compliant with reduced motion support
+- **Responsive** - Mobile-first design
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+
+- npm or yarn
+
+### Installation
 
 ```bash
+# Clone the repository
+git clone https://github.com/yourusername/portfolio.git
+
+# Navigate to the project directory
+cd portfolio
+
+# Install dependencies
+npm install
+
+# Copy environment variables
+cp .env.example .env.local
+
+# Start the development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the site.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Environment Variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Create a `.env.local` file with:
 
-## Learn More
+```
+NEXT_PUBLIC_FORMSPREE_ID=your_formspree_id_here
+```
 
-To learn more about Next.js, take a look at the following resources:
+Get your Formspree ID from [formspree.io](https://formspree.io).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+portfolio/
+├── src/
+│   ├── app/                    # Next.js App Router pages
+│   │   ├── layout.tsx          # Root layout
+│   │   ├── page.tsx            # Home page
+│   │   ├── globals.css         # Global styles
+│   │   ├── blog/               # Blog pages
+│   │   └── not-found.tsx       # 404 page
+│   ├── components/
+│   │   ├── sections/           # Page sections
+│   │   │   ├── Hero/           # 3D hero section
+│   │   │   ├── About/          # About with countdown & gaming stats
+│   │   │   ├── Links/          # Social links
+│   │   │   └── BlogPreview/    # Blog preview
+│   │   ├── three/              # 3D components
+│   │   └── ui/                 # Reusable UI components
+│   ├── content/posts/          # MDX blog posts
+│   ├── hooks/                  # Custom React hooks
+│   └── lib/                    # Utilities
+├── public/                     # Static assets
+├── mdx-components.tsx          # MDX component mapping
+└── next.config.ts              # Next.js configuration
+```
 
-## Deploy on Vercel
+## Available Scripts
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+# Development
+npm run dev
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# Build for production
+npm run build
+
+# Start production server
+npm start
+
+# Lint
+npm run lint
+```
+
+## Adding Blog Posts
+
+Create a new `.mdx` file in `src/content/posts/`:
+
+```mdx
+---
+title: "Your Post Title"
+description: "A brief description"
+date: "2025-01-01"
+tags: ["tag1", "tag2"]
+published: true
+---
+
+# Your content here
+
+Write in Markdown with JSX support!
+```
+
+## Customization
+
+### Theme Colors
+
+Edit CSS variables in `src/app/variables.css`:
+
+```css
+:root {
+  --color-neon-cyan: #00fff5;
+  --color-neon-pink: #ff00ff;
+  --color-neon-purple: #bf00ff;
+}
+```
+
+### Baby Countdown Date
+
+Update the due date in `src/components/sections/About/BabyCountdown.tsx`:
+
+```typescript
+const DUE_DATE = new Date('2025-04-30T00:00:00')
+```
+
+## Deployment
+
+Deploy to Vercel with one click:
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/yourusername/portfolio)
+
+Or deploy manually:
+
+```bash
+npm run build
+vercel deploy --prod
+```
+
+## License
+
+MIT License - feel free to use this as a template for your own portfolio!
+
+---
+
+Built with ❤️ and too much coffee.
