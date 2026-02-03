@@ -55,3 +55,11 @@
   color: var(--color-muted);
   font-size: var(--text-sm);
 }
+
+.unavailable {
+  padding: var(--space-lg);
+  color: var(--color-muted);
+  text-align: center;
+  background: var(--color-bg-secondary);
+  border-radius: var(--radius-lg);
+}

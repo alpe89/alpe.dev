@@ -6,10 +6,10 @@ import { Textarea } from '@/components/ui/Textarea'
 import { Button } from '@/components/ui/Button'
 import styles from './ContactForm.module.css'
 
-const FORMSPREE_ID = process.env.NEXT_PUBLIC_FORMSPREE_ID || 'xwvqrdny'
+const FORMSPREE_ID = process.env.NEXT_PUBLIC_FORMSPREE_ID
 
-export function ContactForm() {
-  const [state, handleSubmit] = useForm(FORMSPREE_ID)
+function ContactFormContent({ formspreeId }: { formspreeId: string }) {
+  const [state, handleSubmit] = useForm(formspreeId)
 
   if (state.succeeded) {
     return (
@@ -87,4 +87,17 @@ export function ContactForm() {
       </p>
     </form>
   )
+}
+
+export function ContactForm() {
+  if (!FORMSPREE_ID) {
+    return (
+      <div className={styles.unavailable}>
+        Contact form is currently unavailable. Please reach out via social
+        links.
+      </div>
+    )
+  }
+
+  return <ContactFormContent formspreeId={FORMSPREE_ID} />
 }
