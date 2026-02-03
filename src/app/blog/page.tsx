@@ -5,7 +5,8 @@ import styles from './blog.module.css'
 
 export const metadata = {
   title: 'Blog | Alberto Pertusi',
-  description: 'Thoughts on TypeScript, React, and occasionally complaining about things.',
+  description:
+    'Thoughts on TypeScript, React, and occasionally complaining about things.',
 }
 
 export default function BlogPage() {
@@ -30,7 +31,8 @@ export default function BlogPage() {
           <div className={styles.emptyIcon}>🤔</div>
           <h2 className={styles.emptyTitle}>Nothing here yet</h2>
           <p className={styles.emptyText}>
-            I&apos;m still working up the courage to share my opinions with the internet.
+            I&apos;m still working up the courage to share my opinions with the
+            internet.
             <br />
             This is either a sign of wisdom or procrastination. Probably both.
           </p>

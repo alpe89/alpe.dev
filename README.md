@@ -6,15 +6,15 @@ Built in 2 days with AI. Yes, really.
 
 ## Tech Stack
 
-| Layer | Technology |
-|-------|------------|
-| Framework | Next.js 16 (App Router) |
-| Language | TypeScript |
-| Animations | GSAP + Framer Motion |
-| Styling | CSS Modules |
-| Blog | MDX |
-| Contact Form | Formspree |
-| Hosting | Vercel |
+| Layer        | Technology              |
+| ------------ | ----------------------- |
+| Framework    | Next.js 16 (App Router) |
+| Language     | TypeScript              |
+| Animations   | GSAP + Framer Motion    |
+| Styling      | CSS Modules             |
+| Blog         | MDX                     |
+| Contact Form | Formspree               |
+| Hosting      | Vercel                  |
 
 ## Features
 
@@ -113,10 +113,10 @@ Create a new `.mdx` file in `src/content/posts/`:
 
 ```mdx
 ---
-title: "Your Post Title"
-description: "A brief description"
-date: "2025-01-01"
-tags: ["tag1", "tag2"]
+title: 'Your Post Title'
+description: 'A brief description'
+date: '2025-01-01'
+tags: ['tag1', 'tag2']
 published: true
 ---
 

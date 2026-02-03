@@ -8,27 +8,52 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       </h1>
     ),
     h2: ({ children }) => (
-      <h2 style={{ marginTop: 'var(--space-xl)', marginBottom: 'var(--space-md)' }}>
+      <h2
+        style={{
+          marginTop: 'var(--space-xl)',
+          marginBottom: 'var(--space-md)',
+        }}
+      >
         {children}
       </h2>
     ),
     h3: ({ children }) => (
-      <h3 style={{ marginTop: 'var(--space-lg)', marginBottom: 'var(--space-sm)' }}>
+      <h3
+        style={{
+          marginTop: 'var(--space-lg)',
+          marginBottom: 'var(--space-sm)',
+        }}
+      >
         {children}
       </h3>
     ),
     p: ({ children }) => (
-      <p style={{ marginBottom: 'var(--space-md)', lineHeight: 'var(--leading-relaxed)' }}>
+      <p
+        style={{
+          marginBottom: 'var(--space-md)',
+          lineHeight: 'var(--leading-relaxed)',
+        }}
+      >
         {children}
       </p>
     ),
     ul: ({ children }) => (
-      <ul style={{ marginBottom: 'var(--space-md)', paddingLeft: 'var(--space-lg)' }}>
+      <ul
+        style={{
+          marginBottom: 'var(--space-md)',
+          paddingLeft: 'var(--space-lg)',
+        }}
+      >
         {children}
       </ul>
     ),
     ol: ({ children }) => (
-      <ol style={{ marginBottom: 'var(--space-md)', paddingLeft: 'var(--space-lg)' }}>
+      <ol
+        style={{
+          marginBottom: 'var(--space-md)',
+          paddingLeft: 'var(--space-lg)',
+        }}
+      >
         {children}
       </ol>
     ),

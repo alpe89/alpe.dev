@@ -54,7 +54,8 @@
 }
 
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translate(0, 0);
   }
   50% {
@@ -115,7 +116,9 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: fadeInUp 0.6s ease forwards, gradient-shift 4s ease infinite;
+  animation:
+    fadeInUp 0.6s ease forwards,
+    gradient-shift 4s ease infinite;
   animation-delay: 0.15s, 0s;
 }
 
@@ -215,7 +218,8 @@
 }
 
 @keyframes scrollBounce {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateX(-50%) translateY(0);
     opacity: 1;
   }

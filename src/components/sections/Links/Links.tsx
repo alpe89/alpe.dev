@@ -1,6 +1,6 @@
-"use client";
+'use client'
 
-import styles from "./Links.module.css";
+import styles from './Links.module.css'
 
 type SocialLink = {
   name: string
@@ -14,50 +14,50 @@ type SocialLink = {
 
 const professionalLinks: SocialLink[] = [
   {
-    name: "GitHub",
-    icon: "🐙",
-    href: "https://github.com/alpe",
-    description: "Where my code lives (and occasionally works)",
-    color: "var(--color-text)",
-    colorAlpha: "rgba(228, 228, 231, 0.3)",
+    name: 'GitHub',
+    icon: '🐙',
+    href: 'https://github.com/alpe',
+    description: 'Where my code lives (and occasionally works)',
+    color: 'var(--color-text)',
+    colorAlpha: 'rgba(228, 228, 231, 0.3)',
   },
   {
-    name: "LinkedIn",
-    icon: "💼",
-    href: "https://linkedin.com/in/albertopertusi",
-    description: "Professional face goes here",
-    color: "#0a66c2",
-    colorAlpha: "rgba(10, 102, 194, 0.3)",
+    name: 'LinkedIn',
+    icon: '💼',
+    href: 'https://linkedin.com/in/albertopertusi',
+    description: 'Professional face goes here',
+    color: '#0a66c2',
+    colorAlpha: 'rgba(10, 102, 194, 0.3)',
   },
   {
-    name: "X (Twitter)",
-    icon: "𝕏",
-    href: "https://x.com/Alpe_89",
-    description: "Occasional tech hot takes",
-    color: "var(--color-text)",
-    colorAlpha: "rgba(228, 228, 231, 0.3)",
+    name: 'X (Twitter)',
+    icon: '𝕏',
+    href: 'https://x.com/Alpe_89',
+    description: 'Occasional tech hot takes',
+    color: 'var(--color-text)',
+    colorAlpha: 'rgba(228, 228, 231, 0.3)',
   },
-];
+]
 
 const gamingLinks: SocialLink[] = [
   {
-    name: "op.gg",
-    icon: "⚔️",
-    href: "https://www.op.gg/summoners/euw/alpe-1989",
-    description: "League of Legends stats",
-    warning: "(Enter at your own risk)",
-    color: "#5383e8",
-    colorAlpha: "rgba(83, 131, 232, 0.3)",
+    name: 'op.gg',
+    icon: '⚔️',
+    href: 'https://www.op.gg/summoners/euw/alpe-1989',
+    description: 'League of Legends stats',
+    warning: '(Enter at your own risk)',
+    color: '#5383e8',
+    colorAlpha: 'rgba(83, 131, 232, 0.3)',
   },
   {
-    name: "Steam",
-    icon: "🎮",
-    href: "https://steamcommunity.com/id/alpe89",
-    description: "1000+ hours of Dota 2 shame",
-    color: "#1b2838",
-    colorAlpha: "rgba(27, 40, 56, 0.3)",
+    name: 'Steam',
+    icon: '🎮',
+    href: 'https://steamcommunity.com/id/alpe89',
+    description: '1000+ hours of Dota 2 shame',
+    color: '#1b2838',
+    colorAlpha: 'rgba(27, 40, 56, 0.3)',
   },
-];
+]
 
 function LinkCard({ link }: { link: SocialLink }) {
   return (
@@ -68,8 +68,8 @@ function LinkCard({ link }: { link: SocialLink }) {
       className={styles.link}
       style={
         {
-          "--linkColor": link.color,
-          "--linkColorAlpha": link.colorAlpha,
+          '--linkColor': link.color,
+          '--linkColorAlpha': link.colorAlpha,
         } as React.CSSProperties
       }
     >
@@ -80,7 +80,7 @@ function LinkCard({ link }: { link: SocialLink }) {
       <span className={styles.description}>{link.description}</span>
       {link.warning && <span className={styles.warning}>{link.warning}</span>}
     </a>
-  );
+  )
 }
 
 export function Links() {
@@ -115,5 +115,5 @@ export function Links() {
         </div>
       </div>
     </section>
-  );
+  )
 }

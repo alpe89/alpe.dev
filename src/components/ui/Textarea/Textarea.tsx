@@ -10,12 +10,17 @@ type TextareaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
 }
 
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
-  ({ label, error, helperText, required, className = '', id, ...props }, ref) => {
+  (
+    { label, error, helperText, required, className = '', id, ...props },
+    ref
+  ) => {
     const textareaId = id || props.name
     const hasError = !!error
 
     return (
-      <div className={`${styles.wrapper} ${hasError ? styles.error : ''} ${className}`}>
+      <div
+        className={`${styles.wrapper} ${hasError ? styles.error : ''} ${className}`}
+      >
         {label && (
           <label htmlFor={textareaId} className={styles.label}>
             {label}
@@ -29,12 +34,20 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           required={required}
           aria-invalid={hasError}
           aria-describedby={
-            error ? `${textareaId}-error` : helperText ? `${textareaId}-helper` : undefined
+            error
+              ? `${textareaId}-error`
+              : helperText
+                ? `${textareaId}-helper`
+                : undefined
           }
           {...props}
         />
         {error && (
-          <span id={`${textareaId}-error`} className={styles.errorMessage} role="alert">
+          <span
+            id={`${textareaId}-error`}
+            className={styles.errorMessage}
+            role="alert"
+          >
             {error}
           </span>
         )}

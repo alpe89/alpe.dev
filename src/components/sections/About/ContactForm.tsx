@@ -19,7 +19,9 @@ export function ContactForm() {
         <p className={styles.successText}>
           Thanks for reaching out! I&apos;ll get back to you soon.
           <br />
-          <span className={styles.muted}>(Probably faster than my average deploy time)</span>
+          <span className={styles.muted}>
+            (Probably faster than my average deploy time)
+          </span>
         </p>
       </div>
     )
@@ -35,7 +37,12 @@ export function ContactForm() {
         required
         autoComplete="name"
       />
-      <ValidationError prefix="Name" field="name" errors={state.errors} className={styles.error} />
+      <ValidationError
+        prefix="Name"
+        field="name"
+        errors={state.errors}
+        className={styles.error}
+      />
 
       <Input
         label="Email"
@@ -45,7 +52,12 @@ export function ContactForm() {
         required
         autoComplete="email"
       />
-      <ValidationError prefix="Email" field="email" errors={state.errors} className={styles.error} />
+      <ValidationError
+        prefix="Email"
+        field="email"
+        errors={state.errors}
+        className={styles.error}
+      />
 
       <Textarea
         label="Message"
@@ -54,9 +66,19 @@ export function ContactForm() {
         required
         rows={5}
       />
-      <ValidationError prefix="Message" field="message" errors={state.errors} className={styles.error} />
+      <ValidationError
+        prefix="Message"
+        field="message"
+        errors={state.errors}
+        className={styles.error}
+      />
 
-      <Button type="submit" disabled={state.submitting} loading={state.submitting} fullWidth>
+      <Button
+        type="submit"
+        disabled={state.submitting}
+        loading={state.submitting}
+        fullWidth
+      >
         {state.submitting ? 'Sending...' : 'Send Message'}
       </Button>
 

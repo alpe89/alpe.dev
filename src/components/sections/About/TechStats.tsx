@@ -89,7 +89,8 @@ export function TechStats() {
                   {skill.score}
                 </span>
                 <span className={styles.modifier}>
-                  ({skill.modifier >= 0 ? '+' : ''}{skill.modifier})
+                  ({skill.modifier >= 0 ? '+' : ''}
+                  {skill.modifier})
                 </span>
               </div>
             </div>

@@ -1,8 +1,8 @@
-"use client";
+'use client'
 
-import styles from "./Hero.module.css";
-import { HeroText, ScrollIndicator } from "./HeroText";
-import { Terminal } from "./Terminal";
+import styles from './Hero.module.css'
+import { HeroText, ScrollIndicator } from './HeroText'
+import { Terminal } from './Terminal'
 
 export function Hero() {
   return (
@@ -16,5 +16,5 @@ export function Hero() {
       </div>
       <ScrollIndicator />
     </section>
-  );
+  )
 }

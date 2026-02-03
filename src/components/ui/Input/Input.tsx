@@ -10,12 +10,17 @@ type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ label, error, helperText, required, className = '', id, ...props }, ref) => {
+  (
+    { label, error, helperText, required, className = '', id, ...props },
+    ref
+  ) => {
     const inputId = id || props.name
     const hasError = !!error
 
     return (
-      <div className={`${styles.wrapper} ${hasError ? styles.error : ''} ${className}`}>
+      <div
+        className={`${styles.wrapper} ${hasError ? styles.error : ''} ${className}`}
+      >
         {label && (
           <label htmlFor={inputId} className={styles.label}>
             {label}
@@ -29,12 +34,20 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           required={required}
           aria-invalid={hasError}
           aria-describedby={
-            error ? `${inputId}-error` : helperText ? `${inputId}-helper` : undefined
+            error
+              ? `${inputId}-error`
+              : helperText
+                ? `${inputId}-helper`
+                : undefined
           }
           {...props}
         />
         {error && (
-          <span id={`${inputId}-error`} className={styles.errorMessage} role="alert">
+          <span
+            id={`${inputId}-error`}
+            className={styles.errorMessage}
+            role="alert"
+          >
             {error}
           </span>
         )}

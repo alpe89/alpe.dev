@@ -54,9 +54,7 @@ function calculateTimeRemaining(): TimeRemaining {
 
   return {
     days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-    hours: Math.floor(
-      (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-    ),
+    hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
     minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
     progress,
     isPastDue: false,
@@ -126,7 +124,8 @@ export function BabyCountdown() {
           <div className={styles.progressFill} style={{ width: '100%' }} />
         </div>
         <p className={styles.message}>
-          Expect bugs. Sleep schedule: <span className={styles.highlight}>undefined</span>
+          Expect bugs. Sleep schedule:{' '}
+          <span className={styles.highlight}>undefined</span>
         </p>
       </div>
     )
@@ -143,9 +142,12 @@ export function BabyCountdown() {
           <div className={styles.progressFill} style={{ width: '100%' }} />
         </div>
         <p className={styles.message}>
-          {timeRemaining.days} days past ETA. They&apos;ll deploy when they&apos;re ready.
+          {timeRemaining.days} days past ETA. They&apos;ll deploy when
+          they&apos;re ready.
           <br />
-          <span className={styles.muted}>(Much like our production releases)</span>
+          <span className={styles.muted}>
+            (Much like our production releases)
+          </span>
         </p>
       </div>
     )
@@ -164,15 +166,19 @@ export function BabyCountdown() {
         />
       </div>
       <div className={styles.stats}>
-        <div className={styles.percentage}>{Math.round(timeRemaining.progress)}%</div>
+        <div className={styles.percentage}>
+          {Math.round(timeRemaining.progress)}%
+        </div>
         <div className={styles.eta}>
-          ETA: <span className={styles.highlight}>{timeRemaining.days}</span> days{' '}
-          <span className={styles.highlight}>{timeRemaining.hours}</span>h{' '}
+          ETA: <span className={styles.highlight}>{timeRemaining.days}</span>{' '}
+          days <span className={styles.highlight}>{timeRemaining.hours}</span>h{' '}
           <span className={styles.highlight}>{timeRemaining.minutes}</span>m
         </div>
       </div>
       <p className={styles.message}>
-        <span className={styles.muted}>(They&apos;ll deploy when they&apos;re ready)</span>
+        <span className={styles.muted}>
+          (They&apos;ll deploy when they&apos;re ready)
+        </span>
       </p>
     </div>
   )

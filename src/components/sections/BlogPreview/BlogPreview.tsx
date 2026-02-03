@@ -1,10 +1,10 @@
-import Link from "next/link";
-import { getAllPosts, formatDate } from "@/lib/mdx/utils";
-import { LinkButton } from "@/components/ui/Button";
-import styles from "./BlogPreview.module.css";
+import Link from 'next/link'
+import { getAllPosts, formatDate } from '@/lib/mdx/utils'
+import { LinkButton } from '@/components/ui/Button'
+import styles from './BlogPreview.module.css'
 
 export function BlogPreview() {
-  const posts = getAllPosts().slice(0, 3);
+  const posts = getAllPosts().slice(0, 3)
 
   return (
     <section className={styles.blogPreview} aria-label="Blog preview">
@@ -64,5 +64,5 @@ export function BlogPreview() {
         )}
       </div>
     </section>
-  );
+  )
 }
