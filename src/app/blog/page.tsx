@@ -1,16 +1,15 @@
-import Link from 'next/link'
-import { getAllPosts, formatDate } from '@/lib/mdx/utils'
-import { LinkButton } from '@/components/ui/Button'
-import styles from './blog.module.css'
+import Link from 'next/link';
+import { getAllPosts, formatDate } from '@/lib/mdx/utils';
+import { LinkButton } from '@/components/ui/Button';
+import styles from './blog.module.css';
 
 export const metadata = {
   title: 'Blog | Alberto Pertusi',
-  description:
-    'Thoughts on TypeScript, React, and occasionally complaining about things.',
-}
+  description: 'Thoughts on TypeScript, React, and occasionally complaining about things.',
+};
 
 export default function BlogPage() {
-  const posts = getAllPosts()
+  const posts = getAllPosts();
 
   return (
     <div className={styles.blog}>
@@ -21,9 +20,7 @@ export default function BlogPage() {
         <h1 className={styles.title}>
           The <span className="gradient-text">Blog</span>
         </h1>
-        <p className={styles.subtitle}>
-          Where I pretend to have interesting thoughts
-        </p>
+        <p className={styles.subtitle}>Where I pretend to have interesting thoughts</p>
       </header>
 
       {posts.length === 0 ? (
@@ -31,8 +28,7 @@ export default function BlogPage() {
           <div className={styles.emptyIcon}>🤔</div>
           <h2 className={styles.emptyTitle}>Nothing here yet</h2>
           <p className={styles.emptyText}>
-            I&apos;m still working up the courage to share my opinions with the
-            internet.
+            I&apos;m still working up the courage to share my opinions with the internet.
             <br />
             This is either a sign of wisdom or procrastination. Probably both.
           </p>
@@ -43,11 +39,7 @@ export default function BlogPage() {
       ) : (
         <div className={styles.posts}>
           {posts.map((post) => (
-            <Link
-              key={post.slug}
-              href={`/blog/${post.slug}`}
-              className={styles.post}
-            >
+            <Link key={post.slug} href={`/blog/${post.slug}`} className={styles.post}>
               <div className={styles.postMeta}>
                 <time className={styles.postDate}>{formatDate(post.date)}</time>
                 {post.tags && post.tags.length > 0 && (
@@ -68,5 +60,5 @@ export default function BlogPage() {
         </div>
       )}
     </div>
-  )
+  );
 }

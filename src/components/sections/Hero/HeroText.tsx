@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import { LinkButton } from '@/components/ui/Button'
-import styles from './Hero.module.css'
+import { LinkButton } from '@/components/ui/Button';
+import styles from './Hero.module.css';
 
 export function HeroText() {
   return (
@@ -11,10 +11,7 @@ export function HeroText() {
         <span className={styles.nameGradient}>Alberto Pertusi</span>
       </h1>
       <p className={styles.tagline}>
-        Technical Lead. Bug Manufacturer.{' '}
-        <span className={styles.taglineHighlight}>
-          Future Sleep-Deprived Dad.
-        </span>
+        Technical Lead. Bug Manufacturer. <span className={styles.taglineHighlight}>Future Sleep-Deprived Dad.</span>
       </p>
       <div className={styles.cta}>
         <LinkButton href="#about" variant="primary">
@@ -28,7 +25,7 @@ export function HeroText() {
         </LinkButton>
       </div>
     </div>
-  )
+  );
 }
 
 export function ScrollIndicator() {
@@ -39,5 +36,5 @@ export function ScrollIndicator() {
       </div>
       <span>Scroll</span>
     </div>
-  )
+  );
 }

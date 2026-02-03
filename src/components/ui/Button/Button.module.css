@@ -22,11 +22,7 @@
 
 /* Variants */
 .primary {
-  background: linear-gradient(
-    135deg,
-    var(--color-neon-cyan),
-    var(--color-neon-purple)
-  );
+  background: linear-gradient(135deg, var(--color-neon-cyan), var(--color-neon-purple));
   color: var(--color-bg);
 }
 

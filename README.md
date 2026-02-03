@@ -144,7 +144,7 @@ Edit CSS variables in `src/app/variables.css`:
 Update the due date in `src/components/sections/About/BabyCountdown.tsx`:
 
 ```typescript
-const DUE_DATE = new Date('2025-04-30T00:00:00')
+const DUE_DATE = new Date('2025-04-30T00:00:00');
 ```
 
 ## Deployment

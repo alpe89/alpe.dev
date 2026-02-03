@@ -1,14 +1,14 @@
-'use client'
+'use client';
 
-import { useForm } from '@formspree/react'
+import { useForm } from '@formspree/react';
 
 export function useFormSubmit(formId: string) {
-  const [state, handleSubmit] = useForm(formId)
+  const [state, handleSubmit] = useForm(formId);
 
   return {
     succeeded: state.succeeded,
     submitting: state.submitting,
     errors: state.errors,
     handleSubmit,
-  }
+  };
 }

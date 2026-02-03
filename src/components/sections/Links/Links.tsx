@@ -1,16 +1,16 @@
-'use client'
+'use client';
 
-import styles from './Links.module.css'
+import styles from './Links.module.css';
 
 type SocialLink = {
-  name: string
-  icon: string
-  href: string
-  description: string
-  warning?: string
-  color: string
-  colorAlpha: string
-}
+  name: string;
+  icon: string;
+  href: string;
+  description: string;
+  warning?: string;
+  color: string;
+  colorAlpha: string;
+};
 
 const professionalLinks: SocialLink[] = [
   {
@@ -37,7 +37,7 @@ const professionalLinks: SocialLink[] = [
     color: 'var(--color-text)',
     colorAlpha: 'rgba(228, 228, 231, 0.3)',
   },
-]
+];
 
 const gamingLinks: SocialLink[] = [
   {
@@ -57,7 +57,7 @@ const gamingLinks: SocialLink[] = [
     color: '#1b2838',
     colorAlpha: 'rgba(27, 40, 56, 0.3)',
   },
-]
+];
 
 function LinkCard({ link }: { link: SocialLink }) {
   return (
@@ -80,7 +80,7 @@ function LinkCard({ link }: { link: SocialLink }) {
       <span className={styles.description}>{link.description}</span>
       {link.warning && <span className={styles.warning}>{link.warning}</span>}
     </a>
-  )
+  );
 }
 
 export function Links() {
@@ -91,9 +91,7 @@ export function Links() {
           <h2 className={styles.title}>
             Find Me <span className="gradient-text">Online</span>
           </h2>
-          <p className={styles.subtitle}>
-            Or don&apos;t. I respect your choices.
-          </p>
+          <p className={styles.subtitle}>Or don&apos;t. I respect your choices.</p>
         </header>
 
         <div className={styles.section}>
@@ -115,5 +113,5 @@ export function Links() {
         </div>
       </div>
     </section>
-  )
+  );
 }

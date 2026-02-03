@@ -1,14 +1,14 @@
-'use client'
+'use client';
 
-import styles from './GamingStats.module.css'
+import styles from './GamingStats.module.css';
 
 type Game = {
-  name: string
-  icon: string
-  achievement: string
-  comment: string
-  color: string
-}
+  name: string;
+  icon: string;
+  achievement: string;
+  comment: string;
+  color: string;
+};
 
 const games: Game[] = [
   {
@@ -39,14 +39,13 @@ const games: Game[] = [
     comment: 'Horde only. For the Horde!',
     color: 'var(--color-neon-accent)',
   },
-]
+];
 
 export function GamingStats() {
   return (
     <div className={styles.gaming}>
       <h3 className={styles.title}>
-        Competitive Gaming Resume{' '}
-        <span className={styles.subtitle}>(nobody asked)</span>
+        Competitive Gaming Resume <span className={styles.subtitle}>(nobody asked)</span>
       </h3>
       <ul className={styles.list}>
         {games.map((game) => (
@@ -62,9 +61,7 @@ export function GamingStats() {
           </li>
         ))}
       </ul>
-      <p className={styles.footer}>
-        I APM my keyboard at work like I&apos;m defending a Zerg rush.
-      </p>
+      <p className={styles.footer}>I APM my keyboard at work like I&apos;m defending a Zerg rush.</p>
     </div>
-  )
+  );
 }

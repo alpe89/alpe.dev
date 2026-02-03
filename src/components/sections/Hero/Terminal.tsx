@@ -1,13 +1,13 @@
-'use client'
+'use client';
 
-import { useState, useEffect, useCallback, useRef } from 'react'
-import styles from './Terminal.module.css'
+import { useState, useEffect, useCallback, useRef } from 'react';
+import styles from './Terminal.module.css';
 
 type CommandResult = {
-  command: string
-  output: string[]
-  isError: boolean
-}
+  command: string;
+  output: string[];
+  isError: boolean;
+};
 
 const funnyCommands: CommandResult[] = [
   {
@@ -147,120 +147,106 @@ const funnyCommands: CommandResult[] = [
     ],
     isError: false,
   },
-]
+];
 
 export function Terminal() {
-  const [history, setHistory] = useState<CommandResult[]>([])
-  const [currentCommand, setCurrentCommand] = useState('')
-  const [isVisible, setIsVisible] = useState(true)
-  const bodyRef = useRef<HTMLDivElement>(null)
-  const terminalRef = useRef<HTMLDivElement>(null)
+  const [history, setHistory] = useState<CommandResult[]>([]);
+  const [currentCommand, setCurrentCommand] = useState('');
+  const [isVisible, setIsVisible] = useState(true);
+  const bodyRef = useRef<HTMLDivElement>(null);
+  const terminalRef = useRef<HTMLDivElement>(null);
 
   // IntersectionObserver to pause when not visible
   useEffect(() => {
-    const terminal = terminalRef.current
-    if (!terminal) return
+    const terminal = terminalRef.current;
+    if (!terminal) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setIsVisible(entry.isIntersecting)
+        setIsVisible(entry.isIntersecting);
       },
       { threshold: 0.1 }
-    )
+    );
 
-    observer.observe(terminal)
-    return () => observer.disconnect()
-  }, [])
+    observer.observe(terminal);
+    return () => observer.disconnect();
+  }, []);
 
   // Auto-scroll to bottom when history changes
   useEffect(() => {
     if (bodyRef.current) {
-      bodyRef.current.scrollTop = bodyRef.current.scrollHeight
+      bodyRef.current.scrollTop = bodyRef.current.scrollHeight;
     }
-  }, [history, currentCommand])
+  }, [history, currentCommand]);
 
   const typeCommand = useCallback((command: string): Promise<void> => {
     return new Promise((resolve) => {
-      let i = 0
+      let i = 0;
       const typeInterval = setInterval(
         () => {
           if (i < command.length) {
-            setCurrentCommand(command.slice(0, i + 1))
-            i++
+            setCurrentCommand(command.slice(0, i + 1));
+            i++;
           } else {
-            clearInterval(typeInterval)
-            resolve()
+            clearInterval(typeInterval);
+            resolve();
           }
         },
         50 + Math.random() * 30
-      )
-    })
-  }, [])
+      );
+    });
+  }, []);
 
   const runCommand = useCallback(async () => {
-    const randomIndex = Math.floor(Math.random() * funnyCommands.length)
-    const commandResult = funnyCommands[randomIndex]
+    const randomIndex = Math.floor(Math.random() * funnyCommands.length);
+    const commandResult = funnyCommands[randomIndex];
 
-    await typeCommand(commandResult.command)
-    await new Promise((resolve) => setTimeout(resolve, 300))
+    await typeCommand(commandResult.command);
+    await new Promise((resolve) => setTimeout(resolve, 300));
 
     setHistory((prev) => {
-      const newHistory = [...prev, commandResult]
+      const newHistory = [...prev, commandResult];
       if (newHistory.length > 3) {
-        return newHistory.slice(-3)
+        return newHistory.slice(-3);
       }
-      return newHistory
-    })
-    setCurrentCommand('')
+      return newHistory;
+    });
+    setCurrentCommand('');
 
-    await new Promise((resolve) =>
-      setTimeout(resolve, 3000 + Math.random() * 2000)
-    )
-  }, [typeCommand])
+    await new Promise((resolve) => setTimeout(resolve, 3000 + Math.random() * 2000));
+  }, [typeCommand]);
 
   useEffect(() => {
-    let mounted = true
+    let mounted = true;
 
     const loop = async () => {
       while (mounted) {
         if (isVisible) {
-          await runCommand()
+          await runCommand();
         } else {
-          await new Promise((resolve) => setTimeout(resolve, 500))
+          await new Promise((resolve) => setTimeout(resolve, 500));
         }
       }
-    }
+    };
 
-    const timeout = setTimeout(loop, 1000)
+    const timeout = setTimeout(loop, 1000);
     return () => {
-      mounted = false
-      clearTimeout(timeout)
-    }
-  }, [runCommand, isVisible])
+      mounted = false;
+      clearTimeout(timeout);
+    };
+  }, [runCommand, isVisible]);
 
   return (
-    <div
-      className={styles.terminal}
-      ref={terminalRef}
-      role="region"
-      aria-label="Animated terminal simulation"
-    >
+    <div className={styles.terminal} ref={terminalRef} role="region" aria-label="Animated terminal simulation">
       <div className={styles.header}>
         <div className={styles.buttons} aria-hidden="true">
           <span className={styles.buttonClose} />
           <span className={styles.buttonMinimize} />
           <span className={styles.buttonMaximize} />
         </div>
-        <span className={styles.title}>
-          alberto@dev: ~/life-changing-project
-        </span>
+        <span className={styles.title}>alberto@dev: ~/life-changing-project</span>
       </div>
-      <div
-        className={styles.body}
-        ref={bodyRef}
-        aria-live="polite"
-        aria-atomic="false"
-      >
+      <div className={styles.body} ref={bodyRef} aria-live="polite" aria-atomic="false">
         {history.map((result, index) => (
           <div key={index} className={styles.commandBlock}>
             <div className={styles.prompt}>
@@ -272,9 +258,7 @@ export function Terminal() {
               <span className={styles.dollar}>$</span>
               <span className={styles.command}>{result.command}</span>
             </div>
-            <div
-              className={`${styles.output} ${result.isError ? styles.error : ''}`}
-            >
+            <div className={`${styles.output} ${result.isError ? styles.error : ''}`}>
               {result.output.map((line, lineIndex) => (
                 <div key={lineIndex} className={styles.line}>
                   {line || '\u00A0'}
@@ -297,5 +281,5 @@ export function Terminal() {
         </div>
       </div>
     </div>
-  )
+  );
 }

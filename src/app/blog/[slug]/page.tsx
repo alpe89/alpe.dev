@@ -1,50 +1,50 @@
-import { notFound } from 'next/navigation'
-import Link from 'next/link'
-import { getPostBySlug, getPostSlugs, formatDate } from '@/lib/mdx/utils'
-import styles from './post.module.css'
+import { notFound } from 'next/navigation';
+import Link from 'next/link';
+import { getPostBySlug, getPostSlugs, formatDate } from '@/lib/mdx/utils';
+import styles from './post.module.css';
 
 type PostPageProps = {
   params: Promise<{
-    slug: string
-  }>
-}
+    slug: string;
+  }>;
+};
 
 export async function generateStaticParams() {
-  const slugs = getPostSlugs()
-  return slugs.map((slug) => ({ slug }))
+  const slugs = getPostSlugs();
+  return slugs.map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: PostPageProps) {
-  const { slug } = await params
-  const post = getPostBySlug(slug)
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
 
   if (!post) {
     return {
       title: 'Post Not Found | Alberto Pertusi',
-    }
+    };
   }
 
   return {
     title: `${post.title} | Alberto Pertusi`,
     description: post.description,
-  }
+  };
 }
 
 export default async function PostPage({ params }: PostPageProps) {
-  const { slug } = await params
-  const post = getPostBySlug(slug)
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
 
   if (!post || !post.published) {
-    notFound()
+    notFound();
   }
 
   // Dynamically import the MDX file
-  let Content
+  let Content;
   try {
-    const mdxModule = await import(`@/content/posts/${slug}.mdx`)
-    Content = mdxModule.default
+    const mdxModule = await import(`@/content/posts/${slug}.mdx`);
+    Content = mdxModule.default;
   } catch {
-    notFound()
+    notFound();
   }
 
   return (
@@ -74,13 +74,11 @@ export default async function PostPage({ params }: PostPageProps) {
       </div>
 
       <footer className={styles.footer}>
-        <p className={styles.footerText}>
-          Thanks for reading! If you made it this far, you deserve a coffee. ☕
-        </p>
+        <p className={styles.footerText}>Thanks for reading! If you made it this far, you deserve a coffee. ☕</p>
         <Link href="/blog" className={styles.footerLink}>
           ← More posts
         </Link>
       </footer>
     </article>
-  )
+  );
 }

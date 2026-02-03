@@ -195,12 +195,7 @@ pre code {
 
 /* Gradient text */
 .gradient-text {
-  background: linear-gradient(
-    135deg,
-    var(--color-neon-accent),
-    var(--color-neon-primary),
-    var(--color-neon-secondary)
-  );
+  background: linear-gradient(135deg, var(--color-neon-accent), var(--color-neon-primary), var(--color-neon-secondary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

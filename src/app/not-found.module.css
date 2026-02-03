@@ -4,11 +4,7 @@
   align-items: center;
   justify-content: center;
   padding: var(--space-lg);
-  background: radial-gradient(
-    ellipse at center,
-    var(--color-bg-secondary) 0%,
-    var(--color-bg) 70%
-  );
+  background: radial-gradient(ellipse at center, var(--color-bg-secondary) 0%, var(--color-bg) 70%);
 }
 
 .content {

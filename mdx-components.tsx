@@ -1,4 +1,4 @@
-import type { MDXComponents } from 'mdx/types'
+import type { MDXComponents } from 'mdx/types';
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
@@ -57,9 +57,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {children}
       </ol>
     ),
-    li: ({ children }) => (
-      <li style={{ marginBottom: 'var(--space-xs)' }}>{children}</li>
-    ),
+    li: ({ children }) => <li style={{ marginBottom: 'var(--space-xs)' }}>{children}</li>,
     blockquote: ({ children }) => (
       <blockquote
         style={{
@@ -83,5 +81,5 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       </a>
     ),
     ...components,
-  }
+  };
 }

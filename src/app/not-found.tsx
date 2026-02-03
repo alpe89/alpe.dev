@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
-import { LinkButton } from '@/components/ui/Button'
-import styles from './not-found.module.css'
+import { useState } from 'react';
+import { LinkButton } from '@/components/ui/Button';
+import styles from './not-found.module.css';
 
 const notFoundMessages = [
   '404: This page is as missing as my LP after a losing streak.',
@@ -15,13 +15,13 @@ const notFoundMessages = [
   "404: The page you're looking for is in another castle.",
   '404: This page ragequit.',
   "404: Page disconnected. Please check your internet connection. (It's not your internet.)",
-]
+];
 
 export default function NotFound() {
   const [message] = useState(() => {
-    if (typeof window === 'undefined') return notFoundMessages[0]
-    return notFoundMessages[Math.floor(Math.random() * notFoundMessages.length)]
-  })
+    if (typeof window === 'undefined') return notFoundMessages[0];
+    return notFoundMessages[Math.floor(Math.random() * notFoundMessages.length)];
+  });
 
   return (
     <div className={styles.container}>
@@ -40,5 +40,5 @@ export default function NotFound() {
         </div>
       </div>
     </div>
-  )
+  );
 }

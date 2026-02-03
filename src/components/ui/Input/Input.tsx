@@ -1,26 +1,21 @@
-'use client'
+'use client';
 
-import { forwardRef } from 'react'
-import styles from './Input.module.css'
+import { forwardRef } from 'react';
+import styles from './Input.module.css';
 
 type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
-  label?: string
-  error?: string
-  helperText?: string
-}
+  label?: string;
+  error?: string;
+  helperText?: string;
+};
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
-  (
-    { label, error, helperText, required, className = '', id, ...props },
-    ref
-  ) => {
-    const inputId = id || props.name
-    const hasError = !!error
+  ({ label, error, helperText, required, className = '', id, ...props }, ref) => {
+    const inputId = id || props.name;
+    const hasError = !!error;
 
     return (
-      <div
-        className={`${styles.wrapper} ${hasError ? styles.error : ''} ${className}`}
-      >
+      <div className={`${styles.wrapper} ${hasError ? styles.error : ''} ${className}`}>
         {label && (
           <label htmlFor={inputId} className={styles.label}>
             {label}
@@ -33,21 +28,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           className={styles.input}
           required={required}
           aria-invalid={hasError}
-          aria-describedby={
-            error
-              ? `${inputId}-error`
-              : helperText
-                ? `${inputId}-helper`
-                : undefined
-          }
+          aria-describedby={error ? `${inputId}-error` : helperText ? `${inputId}-helper` : undefined}
           {...props}
         />
         {error && (
-          <span
-            id={`${inputId}-error`}
-            className={styles.errorMessage}
-            role="alert"
-          >
+          <span id={`${inputId}-error`} className={styles.errorMessage} role="alert">
             {error}
           </span>
         )}
@@ -57,8 +42,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           </span>
         )}
       </div>
-    )
+    );
   }
-)
+);
 
-Input.displayName = 'Input'
+Input.displayName = 'Input';

@@ -1,17 +1,17 @@
-'use client'
+'use client';
 
-import styles from './TechStats.module.css'
+import styles from './TechStats.module.css';
 
 type Skill = {
-  name: string
-  icon: string
-  score: number
-  modifier: number
-  comment: string
-}
+  name: string;
+  icon: string;
+  score: number;
+  modifier: number;
+  comment: string;
+};
 
 function getModifier(score: number): number {
-  return Math.floor((score - 10) / 2)
+  return Math.floor((score - 10) / 2);
 }
 
 const skills: Skill[] = [
@@ -57,13 +57,13 @@ const skills: Skill[] = [
     modifier: getModifier(5),
     comment: 'Critical fail. AbstractFactoryFactoryImpl.',
   },
-]
+];
 
 function getScoreColor(score: number): string {
-  if (score >= 16) return 'var(--color-neon-accent)'
-  if (score >= 12) return 'var(--color-neon-primary)'
-  if (score >= 10) return 'var(--color-text-secondary)'
-  return 'var(--color-neon-secondary)'
+  if (score >= 16) return 'var(--color-neon-accent)';
+  if (score >= 12) return 'var(--color-neon-primary)';
+  if (score >= 10) return 'var(--color-text-secondary)';
+  return 'var(--color-neon-secondary)';
 }
 
 export function TechStats() {
@@ -72,9 +72,7 @@ export function TechStats() {
       <h3 className={styles.title}>
         Tech Skill Sheet <span className={styles.subtitle}>(d20 system)</span>
       </h3>
-      <p className={styles.intro}>
-        Years of experience converted to ability scores. DM approved.
-      </p>
+      <p className={styles.intro}>Years of experience converted to ability scores. DM approved.</p>
       <ul className={styles.list}>
         {skills.map((skill) => (
           <li key={skill.name} className={styles.item}>
@@ -82,10 +80,7 @@ export function TechStats() {
               <span className={styles.icon}>{skill.icon}</span>
               <span className={styles.name}>{skill.name}</span>
               <div className={styles.scores}>
-                <span
-                  className={styles.score}
-                  style={{ color: getScoreColor(skill.score) }}
-                >
+                <span className={styles.score} style={{ color: getScoreColor(skill.score) }}>
                   {skill.score}
                 </span>
                 <span className={styles.modifier}>
@@ -98,9 +93,7 @@ export function TechStats() {
           </li>
         ))}
       </ul>
-      <p className={styles.footer}>
-        🎲 Roll for debugging: *rolls 1* ...we&apos;re pushing to prod anyway.
-      </p>
+      <p className={styles.footer}>🎲 Roll for debugging: *rolls 1* ...we&apos;re pushing to prod anyway.</p>
     </div>
-  )
+  );
 }

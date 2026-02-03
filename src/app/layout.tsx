@@ -1,8 +1,8 @@
-import type { Metadata, Viewport } from 'next'
-import { Analytics } from '@vercel/analytics/next'
-import { Footer } from '@/components/ui/Footer'
-import { inter, jetbrainsMono, spaceGrotesk } from './fonts'
-import './globals.css'
+import type { Metadata, Viewport } from 'next';
+import { Analytics } from '@vercel/analytics/next';
+import { Footer } from '@/components/ui/Footer';
+import { inter, jetbrainsMono, spaceGrotesk } from './fonts';
+import './globals.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://alpe.dev'),
@@ -45,13 +45,13 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
-}
+};
 
 export const viewport: Viewport = {
   themeColor: '#0a0a0f',
   width: 'device-width',
   initialScale: 1,
-}
+};
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -63,27 +63,18 @@ const jsonLd = {
     '@type': 'Organization',
     name: 'Banca AideXa',
   },
-  sameAs: [
-    'https://github.com/alpe89',
-    'https://linkedin.com/in/albertopertusi',
-  ],
-}
+  sameAs: ['https://github.com/alpe89', 'https://linkedin.com/in/albertopertusi'],
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${inter.variable} ${jetbrainsMono.variable} ${spaceGrotesk.variable}`}
-    >
+    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} ${spaceGrotesk.variable}`}>
       <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </head>
       <body>
         <a href="#main-content" className="skip-link">
@@ -94,5 +85,5 @@ export default function RootLayout({
         <Analytics />
       </body>
     </html>
-  )
+  );
 }

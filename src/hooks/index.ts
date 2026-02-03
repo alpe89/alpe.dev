@@ -1,2 +1,2 @@
-export { useReducedMotion } from './useReducedMotion'
-export { useFormSubmit } from './useFormSubmit'
+export { useReducedMotion } from './useReducedMotion';
+export { useFormSubmit } from './useFormSubmit';
