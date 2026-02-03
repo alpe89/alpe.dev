@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next'
+import { Analytics } from '@vercel/analytics/next'
 import { Footer } from '@/components/ui/Footer'
 import { inter, jetbrainsMono, spaceGrotesk } from './fonts'
 import './globals.css'
@@ -90,6 +91,7 @@ export default function RootLayout({
         </a>
         <main id="main-content">{children}</main>
         <Footer />
+        <Analytics />
       </body>
     </html>
   )
