@@ -2,7 +2,7 @@
 
 import styles from './TechStats.module.css'
 
-interface Skill {
+type Skill = {
   name: string
   icon: string
   score: number

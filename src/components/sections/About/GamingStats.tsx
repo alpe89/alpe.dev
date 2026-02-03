@@ -2,12 +2,12 @@
 
 import styles from "./GamingStats.module.css";
 
-interface Game {
-  name: string;
-  icon: string;
-  achievement: string;
-  comment: string;
-  color: string;
+type Game = {
+  name: string
+  icon: string
+  achievement: string
+  comment: string
+  color: string
 }
 
 const games: Game[] = [

@@ -8,9 +8,8 @@ Built in 2 days with AI. Yes, really.
 
 | Layer | Technology |
 |-------|------------|
-| Framework | Next.js 15 (App Router) |
+| Framework | Next.js 16 (App Router) |
 | Language | TypeScript |
-| 3D | React Three Fiber + Drei |
 | Animations | GSAP + Framer Motion |
 | Styling | CSS Modules |
 | Blog | MDX |
@@ -19,7 +18,7 @@ Built in 2 days with AI. Yes, really.
 
 ## Features
 
-- **3D Hero Scene** - Floating tech logos, gaming icons, and a wireframe Shiba Inu
+- **Terminal Hero** - Animated terminal with dev commands
 - **Baby Countdown Widget** - Because being a soon-to-be dad is worth celebrating (with a progress bar)
 - **Gaming Stats Section** - Self-deprecating competitive gaming resume
 - **Contact Form** - Formspree integration for easy contact
@@ -39,7 +38,7 @@ Built in 2 days with AI. Yes, really.
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/portfolio.git
+git clone https://github.com/alpe89/alpe.dev.git
 
 # Navigate to the project directory
 cd portfolio
@@ -79,11 +78,10 @@ portfolio/
 │   │   └── not-found.tsx       # 404 page
 │   ├── components/
 │   │   ├── sections/           # Page sections
-│   │   │   ├── Hero/           # 3D hero section
+│   │   │   ├── Hero/           # Terminal hero section
 │   │   │   ├── About/          # About with countdown & gaming stats
 │   │   │   ├── Links/          # Social links
 │   │   │   └── BlogPreview/    # Blog preview
-│   │   ├── three/              # 3D components
 │   │   └── ui/                 # Reusable UI components
 │   ├── content/posts/          # MDX blog posts
 │   ├── hooks/                  # Custom React hooks
@@ -153,7 +151,7 @@ const DUE_DATE = new Date('2025-04-30T00:00:00')
 
 Deploy to Vercel with one click:
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/yourusername/portfolio)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/alpe89/alpe.dev)
 
 Or deploy manually:
 

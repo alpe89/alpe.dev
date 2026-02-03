@@ -1,12 +1,12 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useSyncExternalStore } from 'react'
 import styles from './BabyCountdown.module.css'
 
 const DUE_DATE = new Date('2026-04-29T00:00:00')
 const CONCEPTION_DATE = new Date('2025-07-29T00:00:00') // Roughly 9 months before
 
-interface TimeRemaining {
+type TimeRemaining = {
   days: number
   hours: number
   minutes: number
@@ -29,8 +29,12 @@ function calculateTimeRemaining(): TimeRemaining {
   if (difference <= 0 && !isBorn) {
     return {
       days: Math.abs(Math.floor(difference / (1000 * 60 * 60 * 24))),
-      hours: Math.abs(Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))),
-      minutes: Math.abs(Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60))),
+      hours: Math.abs(
+        Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+      ),
+      minutes: Math.abs(
+        Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60))
+      ),
       progress: 100,
       isPastDue: true,
       isBorn: false,
@@ -50,7 +54,9 @@ function calculateTimeRemaining(): TimeRemaining {
 
   return {
     days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-    hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+    hours: Math.floor(
+      (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    ),
     minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
     progress,
     isPastDue: false,
@@ -58,21 +64,35 @@ function calculateTimeRemaining(): TimeRemaining {
   }
 }
 
+const defaultTimeRemaining: TimeRemaining = {
+  days: 0,
+  hours: 0,
+  minutes: 0,
+  progress: 0,
+  isPastDue: false,
+  isBorn: false,
+}
+
+function subscribeToNothing() {
+  return () => {}
+}
+
+function useMounted() {
+  return useSyncExternalStore(
+    subscribeToNothing,
+    () => true,
+    () => false
+  )
+}
+
 export function BabyCountdown() {
-  const [timeRemaining, setTimeRemaining] = useState<TimeRemaining>({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    progress: 0,
-    isPastDue: false,
-    isBorn: false,
+  const mounted = useMounted()
+  const [timeRemaining, setTimeRemaining] = useState<TimeRemaining>(() => {
+    if (typeof window === 'undefined') return defaultTimeRemaining
+    return calculateTimeRemaining()
   })
-  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    setMounted(true)
-    setTimeRemaining(calculateTimeRemaining())
-
     const interval = setInterval(() => {
       setTimeRemaining(calculateTimeRemaining())
     }, 60000) // Update every minute

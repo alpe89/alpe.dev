@@ -79,7 +79,7 @@
   justify-content: center;
   opacity: 0;
   animation: fadeInUp 0.6s ease forwards;
-  animation-delay: 1s;
+  animation-delay: 0.4s;
   margin-top: var(--space-xl);
 }
 
@@ -90,7 +90,7 @@
   margin-bottom: var(--space-xs);
   opacity: 0;
   animation: fadeInUp 0.6s ease forwards;
-  animation-delay: 0.2s;
+  animation-delay: 0.1s;
 }
 
 .name {
@@ -101,7 +101,7 @@
   margin-bottom: var(--space-xs);
   opacity: 0;
   animation: fadeInUp 0.6s ease forwards;
-  animation-delay: 0.4s;
+  animation-delay: 0.15s;
 }
 
 .nameGradient {
@@ -116,7 +116,7 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
   animation: fadeInUp 0.6s ease forwards, gradient-shift 4s ease infinite;
-  animation-delay: 0.4s, 0s;
+  animation-delay: 0.15s, 0s;
 }
 
 .tagline {
@@ -129,7 +129,7 @@
   margin-right: auto;
   opacity: 0;
   animation: fadeInUp 0.6s ease forwards;
-  animation-delay: 0.6s;
+  animation-delay: 0.2s;
 }
 
 .taglineHighlight {
@@ -143,7 +143,7 @@
   flex-wrap: wrap;
   opacity: 0;
   animation: fadeInUp 0.6s ease forwards;
-  animation-delay: 0.8s;
+  animation-delay: 0.25s;
 }
 
 .scrollIndicator {
@@ -159,7 +159,7 @@
   font-size: var(--text-xs);
   opacity: 0;
   animation: fadeIn 0.6s ease forwards;
-  animation-delay: 1.5s;
+  animation-delay: 0.6s;
 }
 
 .scrollMouse {

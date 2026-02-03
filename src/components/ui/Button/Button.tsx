@@ -6,7 +6,7 @@ import styles from './Button.module.css'
 type ButtonVariant = 'primary' | 'secondary' | 'ghost'
 type ButtonSize = 'small' | 'medium' | 'large'
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: ButtonVariant
   size?: ButtonSize
   fullWidth?: boolean
@@ -14,7 +14,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode
 }
 
-interface LinkButtonProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+type LinkButtonProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
   variant?: ButtonVariant
   size?: ButtonSize
   fullWidth?: boolean

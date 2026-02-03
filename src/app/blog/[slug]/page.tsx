@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { getPostBySlug, getPostSlugs, formatDate } from '@/lib/mdx/utils'
 import styles from './post.module.css'
 
-interface PostPageProps {
+type PostPageProps = {
   params: Promise<{
     slug: string
   }>

@@ -2,14 +2,14 @@
 
 import styles from "./Links.module.css";
 
-interface SocialLink {
-  name: string;
-  icon: string;
-  href: string;
-  description: string;
-  warning?: string;
-  color: string;
-  colorAlpha: string;
+type SocialLink = {
+  name: string
+  icon: string
+  href: string
+  description: string
+  warning?: string
+  color: string
+  colorAlpha: string
 }
 
 const professionalLinks: SocialLink[] = [

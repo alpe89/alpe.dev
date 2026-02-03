@@ -20,6 +20,9 @@ export function HeroText() {
         <LinkButton href="#about" variant="primary">
           About Me
         </LinkButton>
+        <LinkButton href="/blog" variant="secondary">
+          Blog
+        </LinkButton>
         <LinkButton href="#contact" variant="secondary">
           Get in Touch
         </LinkButton>

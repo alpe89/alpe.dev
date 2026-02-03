@@ -1,8 +1,10 @@
 import type { Metadata, Viewport } from 'next'
 import { Footer } from '@/components/ui/Footer'
+import { inter, jetbrainsMono, spaceGrotesk } from './fonts'
 import './globals.css'
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://alpe.dev'),
   title: 'Alberto Pertusi | Technical Lead & Bug Manufacturer',
   icons: {
     icon: '/favicon.svg',
@@ -50,13 +52,38 @@ export const viewport: Viewport = {
   initialScale: 1,
 }
 
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Alberto Pertusi',
+  url: 'https://alpe.dev',
+  jobTitle: 'Technical Lead',
+  worksFor: {
+    '@type': 'Organization',
+    name: 'Banca AideXa',
+  },
+  sameAs: [
+    'https://github.com/alpe89',
+    'https://linkedin.com/in/albertopertusi',
+  ],
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      className={`${inter.variable} ${jetbrainsMono.variable} ${spaceGrotesk.variable}`}
+    >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body>
         <a href="#main-content" className="skip-link">
           Skip to main content

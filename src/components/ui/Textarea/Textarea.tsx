@@ -3,7 +3,7 @@
 import { forwardRef } from 'react'
 import styles from './Textarea.module.css'
 
-interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+type TextareaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
   label?: string
   error?: string
   helperText?: string

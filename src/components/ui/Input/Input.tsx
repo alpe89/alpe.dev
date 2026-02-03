@@ -3,7 +3,7 @@
 import { forwardRef } from 'react'
 import styles from './Input.module.css'
 
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   label?: string
   error?: string
   helperText?: string

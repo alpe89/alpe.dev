@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { LinkButton } from '@/components/ui/Button'
 import styles from './not-found.module.css'
 
@@ -18,12 +18,10 @@ const notFoundMessages = [
 ]
 
 export default function NotFound() {
-  const [message, setMessage] = useState('')
-
-  useEffect(() => {
-    const randomMessage = notFoundMessages[Math.floor(Math.random() * notFoundMessages.length)]
-    setMessage(randomMessage)
-  }, [])
+  const [message] = useState(() => {
+    if (typeof window === 'undefined') return notFoundMessages[0]
+    return notFoundMessages[Math.floor(Math.random() * notFoundMessages.length)]
+  })
 
   return (
     <div className={styles.container}>

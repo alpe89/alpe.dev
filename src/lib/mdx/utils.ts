@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 
-export interface PostMeta {
+export type PostMeta = {
   slug: string
   title: string
   description: string
@@ -11,7 +11,7 @@ export interface PostMeta {
   published: boolean
 }
 
-export interface Post extends PostMeta {
+export type Post = PostMeta & {
   content: string
 }
 
@@ -55,6 +55,7 @@ export function getAllPosts(): PostMeta[] {
     .map((slug) => {
       const post = getPostBySlug(slug)
       if (!post || !post.published) return null
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { content, ...meta } = post
       return meta
     })
