@@ -1,13 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { LinkButton } from '@/components/ui/Button';
 import styles from './not-found.module.css';
 
 const notFoundMessages = [
   '404: This page is as missing as my LP after a losing streak.',
   '404: This page went AFK, just like my support.',
-  '404: Page not found. Unlike my dog, who always finds me. Because he wants food.',
   '404: This page left faster than my teammates after first blood.',
   '404: Error fetching page. Have you tried mass Recall?',
   '404: This page got Zerg rushed.',
@@ -18,10 +17,11 @@ const notFoundMessages = [
 ];
 
 export default function NotFound() {
-  const [message] = useState(() => {
-    if (typeof window === 'undefined') return notFoundMessages[0];
-    return notFoundMessages[Math.floor(Math.random() * notFoundMessages.length)];
-  });
+  const [message, setMessage] = useState(notFoundMessages[0]);
+
+  useEffect(() => {
+    setMessage(notFoundMessages[Math.floor(Math.random() * notFoundMessages.length)]);
+  }, []);
 
   return (
     <div className={styles.container}>

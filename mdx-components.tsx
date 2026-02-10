@@ -71,6 +71,39 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {children}
       </blockquote>
     ),
+    table: ({ children }) => (
+      <table
+        style={{
+          width: '100%',
+          borderCollapse: 'collapse',
+          marginBottom: 'var(--space-md)',
+          border: '1px solid rgba(255, 255, 255, 0.12)',
+        }}
+      >
+        {children}
+      </table>
+    ),
+    th: ({ children }) => (
+      <th
+        style={{
+          border: '1px solid rgba(255, 255, 255, 0.12)',
+          padding: 'var(--space-sm) var(--space-md)',
+          textAlign: 'left',
+        }}
+      >
+        {children}
+      </th>
+    ),
+    td: ({ children }) => (
+      <td
+        style={{
+          border: '1px solid rgba(255, 255, 255, 0.12)',
+          padding: 'var(--space-sm) var(--space-md)',
+        }}
+      >
+        {children}
+      </td>
+    ),
     a: ({ href, children }) => (
       <a
         href={href}
