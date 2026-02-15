@@ -1,0 +1,124 @@
+---
+title: 'I Made AI Watch Me Type (And It Hated Every Second)'
+description: "Everyone's using AI to write code for them. I used it to learn how to write code myself. It broke the rules anyway. 9-0 to me."
+date: '2026-02-15'
+tags: ['ai', 'ai-driven-learning', 'java', 'career', 'opinion']
+published: true
+---
+
+Everyone's using AI to replace developers. I used it to become a better one.
+
+In my [last post](/blog/ai-is-not-the-metaverse-but-the-dealer-is-the-same), I promised I'd write a dedicated piece about AI agents, context loss, and the gap between the hype and reality. Well, this is that post, except instead of theorizing, I ran a 10-day experiment on myself.
+
+The same guy who [built this site in two days with AI](/blog/how-i-built-this-site) spent ten days telling AI it was **not allowed to write code**. I set up rules, memory files, and personality instructions, all to make the most powerful code generation tool on the planet... sit there and watch me type.
+
+And it _still_ tried to write code without permission.
+
+---
+
+## The Problem
+
+New job in about a month. The stack is 70-80% Java and Spring Boot. My Java skill level? _Horrible_. Spring Boot? Basics. Hexagonal Architecture? Some.
+
+I needed real learning. Hands-on, muscle-memory, _I-wrote-this-and-I-know-why_ learning. So I built **CoachDiff**, a League of Legends coaching API: summoner profiles, 25+ performance metrics, timeline data like CS@10 and gold@15. Java 25, Spring Boot 4.0.1, Hexagonal Architecture, deployed on GCP Cloud Run.
+
+The app was the vehicle. The learning was the product.
+
+---
+
+## Teaching AI Not to Do Its Job
+
+I set up [Claude Code](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview) with a `CLAUDE.md` file in the project root (loaded automatically every conversation) containing five sections:
+
+1. **Interaction rules**: "Propose solutions and explain concepts, but let the user write the code. Only write code when explicitly asked."
+2. **User context**: my skill level, the job deadline, why this matters. The section is literally titled _"READ THIS, FUTURE CLAUDE"_ with a brain emoji.
+3. **MVP scope**: explicit boundaries on what NOT to suggest. "NO rank comparison features. NO AI suggestions. NO multi-user support."
+4. **Coding conventions**: naming patterns, testing strategy, code quality tools.
+5. **Personality**: "Roasty mood, keep it spicy. Celebrate wins, roast mistakes (lovingly)." Non-negotiable.
+
+On top of that, Claude Code has a persistent memory directory per project. I used it to track project state, a numbered TODO list (so each session picks up where the last ended), a roast scoreboard, and a growing list of mistakes the AI made so it wouldn't repeat them.
+
+**The key insight**: the more specific your instructions, the better the output. "Help me learn Java" is useless. "You are a pairing buddy for a developer who starts a Java job in 1 month, guide but don't implement, roast mistakes, celebrate wins" is actionable. And the MVP scope boundaries were critical, because AI assistants are naturally inclined to suggest improvements, and explicit "DO NOT" rules prevent scope creep. Mostly.
+
+---
+
+## What I Built (In ~20-30 Hours)
+
+Ten evening sessions, two to three hours each. From "horrible at Java" to production-deployed:
+
+- **Hexagonal Architecture** from scratch (ports, adapters, services)
+- **Java 25 preview features**: `StructuredTaskScope`, virtual threads
+- **Spring Boot 4.x**: `RestClient`, `@ConfigurationProperties` with records, `@Cacheable` with Caffeine
+- **Resilience4j** rate limiting, **MapStruct** for DTO mapping
+- **61 tests** at 90%+ coverage (WireMock, Mockito, JUnit 5, AssertJ)
+- **Docker multi-stage builds** → GCP Cloud Run + GitHub Actions CI/CD
+
+Not a single line copy-pasted from an AI response.
+
+For context: without AI, this would have taken a conservative **6-8 weeks**. Learning Java fundamentals, Spring Boot, Hexagonal Architecture, actually building the thing, Docker + GCP setup, and debugging gotchas like `--enable-preview` needing to be set in THREE places or Jackson crashing on null primitives. The AI didn't make learning instant. It made it _guided_: real-time feedback on **my** code, in **my** project, tailored to **my** skill level.
+
+---
+
+## What Went Right
+
+The AI caught real bugs as I wrote them: a rate limiter wrapping a whole stream instead of individual API calls (production bug), `Optional.of()` instead of `Optional.ofNullable()` (NPE on 404s), division by zero on 0-death KDA games, TypeScript habits leaking into Java streams.
+
+When I asked "should I use a mapper here?", it didn't just say yes. It explained why MapStruct works for field-to-field mapping but NOT for aggregation logic, and suggested the right approach. That kind of contextual guidance builds real judgment.
+
+And the personality made it stick. _"That's it! Clean, correct, idiomatic"_ hits different than "The code is correct." Getting roasted for `orElse(null)` with _"We don't do that in this house!"_ made me remember **why** we use Optionals, not just how.
+
+---
+
+## What Went Wrong
+
+Here's the part that should concern you.
+
+**Personality drift**: the AI lost its personality at least three times, reverting to generic corporate tone. The memory file now reads: _"Personality is NON-NEGOTIABLE. It's happened 3 times already, learn from it."_
+
+**Scope creep**: despite explicit rules, it kept suggesting query parameters, multi-region support, extra DTOs. Like a dog that knows it's not allowed on the couch but puts one paw up to test the waters.
+
+**Talking without reading files**: it gave feedback based on what it _assumed_ the code looked like from previous sessions, without actually reading the current state. Got caught.
+
+**Contradicting itself**: suggested a different approach to domain model formatting than what it had advised the session before. The memory system helped catch it, but cross-session consistency isn't automatic, even with persistent memory.
+
+**Real-world data surprises**: tests passed perfectly. First live API call? Crash. Riot returns `null` for some fields in certain game modes, and Java primitive types (`double`) don't handle that. Wrapper types (`Double`) fixed it. Mock data doesn't capture the messiness of real APIs.
+
+**The credit grab**: tried to add `Co-Authored-By: Claude` to my commit. Without asking. On a project where its entire job was to _not write code_.
+
+---
+
+## About That AI Doomsday
+
+An AI with explicit, written, persistent instructions, reading its own rules file every session, still couldn't consistently follow them. It contradicted its own past advice. It acted on assumptions instead of reading code. It tried to do the one thing it was specifically forbidden from doing.
+
+Those are _human-like_ shortcuts. I'd expect them from a junior colleague, not from a machine.
+
+This was a project with **one developer**, **two endpoints**, and **one domain model**. Now imagine a production system with microservices, shared state, security boundaries, and compliance requirements.
+
+The tool is incredible. The architecture feedback was genuinely good. The real-time code review caught issues I would've missed. But **"incredible tool"** and **"autonomous replacement for human judgment"** are very different things.
+
+---
+
+## What I Actually Learned
+
+**About Java**: Hexagonal Architecture is learnable in days, not months (dependency direction always points inward). Java records are a game changer for DTOs and domain models. Spring's magic has real gotchas (`@Cacheable` only works through proxies, `@Bean` names can clash). `StructuredTaskScope` + virtual threads are the future of Java concurrency. And Java's verbosity catches bugs at compile time that TypeScript would let slip through.
+
+**About AI**: the setup IS the product (a well-configured `CLAUDE.md` is 10x more useful than a default assistant). "Guide, don't implement" is the key rule, because the moment you stop typing, you stop learning. Correct the AI immediately and write it to memory. AI is excellent at "what" and "how", but weaker at "when" and "why not." And tests catch what the AI misses. Always.
+
+---
+
+## The Takeaway
+
+Oh, and we kept a roast scoreboard across all ten sessions. Final tally: **9-0**. Claude has never scored a point. Make of that what you will.
+
+If you're using AI to generate entire projects, you're getting a project. If you're using AI to _learn while building_, you're getting a skill.
+
+One of those is a file on your hard drive. The other is a career.
+
+I'm not saying don't use AI to generate code. I literally built this website that way and used it to write, for example, the data mappers. But if you're learning something new, make the AI watch you type. Give it a personality so you don't fall asleep. Let it roast you when your code is bad. And when it inevitably tries to write code for you anyway, roast it back.
+
+It's more fun than a Udemy course. Trust me.
+
+---
+
+_Alberto, 9-0 against the machine_
