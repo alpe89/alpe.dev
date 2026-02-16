@@ -42,6 +42,7 @@ export default function BlogPage() {
             <Link key={post.slug} href={`/blog/${post.slug}`} className={styles.post}>
               <div className={styles.postMeta}>
                 <time className={styles.postDate}>{formatDate(post.date)}</time>
+                <span className={styles.postReadingTime}>{post.readingTime} min read</span>
                 {post.tags && post.tags.length > 0 && (
                   <div className={styles.postTags}>
                     {post.tags.map((tag) => (

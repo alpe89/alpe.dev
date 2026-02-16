@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getPostBySlug, getPostSlugs, formatDate } from '@/lib/mdx/utils';
+import { ShareButtons } from '@/components/ui/ShareButtons';
 import styles from './post.module.css';
 
 type PostPageProps = {
@@ -55,6 +56,7 @@ export default async function PostPage({ params }: PostPageProps) {
         </Link>
         <div className={styles.meta}>
           <time className={styles.date}>{formatDate(post.date)}</time>
+          <span className={styles.readingTime}>{post.readingTime} min read</span>
           {post.tags && post.tags.length > 0 && (
             <div className={styles.tags}>
               {post.tags.map((tag) => (
@@ -74,6 +76,7 @@ export default async function PostPage({ params }: PostPageProps) {
       </div>
 
       <footer className={styles.footer}>
+        <ShareButtons url={`https://alpe.dev/blog/${slug}`} title={post.title} />
         <p className={styles.footerText}>Thanks for reading! If you made it this far, you deserve a coffee. ☕</p>
         <Link href="/blog" className={styles.footerLink}>
           ← More posts

@@ -37,6 +37,12 @@
   color: var(--color-muted);
 }
 
+.readingTime {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+}
+
 .tags {
   display: flex;
   gap: var(--space-xs);
@@ -156,7 +162,10 @@
   margin-top: var(--space-3xl);
   padding-top: var(--space-xl);
   border-top: 1px solid var(--color-border);
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
 }
 
 .footerText {

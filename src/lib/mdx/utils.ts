@@ -9,6 +9,7 @@ export type PostMeta = {
   date: string;
   tags?: string[];
   published: boolean;
+  readingTime: number;
 };
 
 export type Post = PostMeta & {
@@ -16,6 +17,11 @@ export type Post = PostMeta & {
 };
 
 const postsDirectory = path.join(process.cwd(), 'src/content/posts');
+
+function calculateReadingTime(content: string): number {
+  const words = content.trim().split(/\s+/).length;
+  return Math.max(1, Math.round(words / 200));
+}
 
 export function getPostSlugs(): string[] {
   if (!fs.existsSync(postsDirectory)) {
@@ -44,6 +50,7 @@ export function getPostBySlug(slug: string): Post | null {
     date: data.date || new Date().toISOString(),
     tags: data.tags || [],
     published: data.published !== false,
+    readingTime: calculateReadingTime(content),
     content,
   };
 }

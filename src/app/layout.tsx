@@ -75,6 +75,7 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} ${spaceGrotesk.variable}`}>
       <head>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+        <link rel="alternate" type="application/rss+xml" title="Alberto Pertusi's Blog" href="/feed.xml" />
       </head>
       <body>
         <a href="#main-content" className="skip-link">
