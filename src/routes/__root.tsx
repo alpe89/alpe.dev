@@ -29,6 +29,18 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
         name: 'description',
         content: 'Alberto Pertusi, Full Stack Software Engineer in Milan. Can lead humans, prefers dogs.',
       },
+      { property: 'og:type', content: 'website' },
+      { property: 'og:site_name', content: 'alpe.dev' },
+      { property: 'og:title', content: 'Alberto Pertusi :: alpe.dev' },
+      {
+        property: 'og:description',
+        content: 'Full Stack Software Engineer in Milan. Can lead humans, prefers dogs.',
+      },
+      { property: 'og:url', content: 'https://alpe.dev' },
+      { property: 'og:image', content: 'https://alpe.dev/avatar.png' },
+      { name: 'twitter:card', content: 'summary' },
+      { name: 'twitter:title', content: 'Alberto Pertusi :: alpe.dev' },
+      { name: 'twitter:image', content: 'https://alpe.dev/avatar.png' },
     ],
     links: [
       { rel: 'stylesheet', href: appCss },
