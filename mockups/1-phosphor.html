@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alberto Pertusi — Phosphor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #050807;
+    --bg-2: #0a100c;
+    --bg-3: #0f1712;
+    --green: #3aff8c;
+    --green-dim: #2bcc70;
+    --cyan: #4dd8e6;
+    --amber: #ffb347;
+    --text: #c8e6d0;
+    --muted: #5c7a66;
+    --border: #1a2e20;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Mono', monospace;
+    line-height: 1.6;
+    position: relative;
+  }
+  /* CRT scanlines */
+  body::after {
+    content: '';
+    position: fixed; inset: 0;
+    background: repeating-linear-gradient(0deg, rgba(0,0,0,0.15) 0px, rgba(0,0,0,0.15) 1px, transparent 1px, transparent 3px);
+    pointer-events: none;
+    z-index: 999;
+  }
+  /* Phosphor glow vignette */
+  .vignette {
+    position: fixed; inset: 0;
+    background: radial-gradient(ellipse at 50% 30%, rgba(58,255,140,0.05), transparent 60%);
+    pointer-events: none;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+  nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 0; border-bottom: 1px solid var(--border);
+  }
+  .logo { color: var(--green); font-weight: 700; text-shadow: 0 0 12px rgba(58,255,140,0.5); }
+  .logo::before { content: '▊ '; animation: blink 1.2s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+  nav ul { display: flex; gap: 28px; list-style: none; }
+  nav a { color: var(--muted); text-decoration: none; font-size: 14px; transition: color .2s, text-shadow .2s; }
+  nav a:hover { color: var(--green); text-shadow: 0 0 10px rgba(58,255,140,0.6); }
+  nav a::before { content: './'; opacity: .5; }
+
+  .hero { padding: 90px 0 70px; }
+  .prompt-line { color: var(--muted); font-size: 14px; margin-bottom: 12px; }
+  .prompt-line .u { color: var(--cyan); }
+  .prompt-line .cmd { color: var(--text); }
+  h1 {
+    font-size: clamp(2rem, 6vw, 3.4rem);
+    font-weight: 700;
+    color: var(--green);
+    text-shadow: 0 0 24px rgba(58,255,140,0.35);
+    letter-spacing: -0.02em;
+    margin: 8px 0 4px;
+  }
+  .role { font-size: clamp(1rem, 2.5vw, 1.25rem); color: var(--amber); margin-bottom: 24px; }
+  .role::before { content: '=> '; color: var(--muted); }
+  .hero p.bio { max-width: 60ch; color: var(--text); font-size: 15px; }
+  .hero .keys { color: var(--muted); font-size: 13px; margin-top: 28px; }
+  .hero .keys kbd {
+    border: 1px solid var(--border); border-radius: 4px; padding: 1px 7px;
+    background: var(--bg-3); color: var(--green-dim); font-family: inherit; font-size: 12px;
+  }
+
+  section { padding: 56px 0; border-top: 1px solid var(--border); }
+  h2 { font-size: 14px; text-transform: uppercase; letter-spacing: .18em; color: var(--muted); margin-bottom: 28px; }
+  h2::before { content: '## '; color: var(--green-dim); }
+
+  .about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; }
+  @media (max-width: 700px) { .about-grid { grid-template-columns: 1fr; } }
+  .about-grid p { font-size: 15px; margin-bottom: 16px; }
+  .hl { color: var(--green); }
+  .hl-c { color: var(--cyan); }
+  .statbox {
+    border: 1px solid var(--border); background: var(--bg-2);
+    border-radius: 6px; padding: 20px; font-size: 13.5px;
+  }
+  .statbox .row { display: flex; justify-content: space-between; padding: 7px 0; border-bottom: 1px dashed var(--border); }
+  .statbox .row:last-child { border: none; }
+  .statbox .k { color: var(--muted); }
+  .statbox .v { color: var(--green); }
+  .statbox .v.ok::before { content: '✓ '; }
+
+  .posts { display: flex; flex-direction: column; }
+  .post {
+    display: flex; gap: 20px; align-items: baseline;
+    padding: 16px 12px; border-radius: 6px;
+    text-decoration: none; transition: background .15s;
+  }
+  .post:hover { background: var(--bg-2); }
+  .post:hover .pt { color: var(--green); text-shadow: 0 0 10px rgba(58,255,140,0.4); }
+  .post .date { color: var(--muted); font-size: 13px; flex-shrink: 0; width: 96px; }
+  .post .pt { color: var(--text); font-size: 15px; font-weight: 500; transition: all .15s; }
+  .post .pt::before { content: '-rw-r--r-- '; color: var(--muted); font-size: 12px; }
+
+  footer {
+    border-top: 1px solid var(--border); padding: 32px 0 48px;
+    display: flex; justify-content: space-between; color: var(--muted); font-size: 13px;
+  }
+  footer a { color: var(--green-dim); text-decoration: none; }
+  footer a:hover { color: var(--green); }
+</style>
+</head>
+<body>
+<div class="vignette"></div>
+<div class="wrap">
+  <nav>
+    <span class="logo">alpe.dev</span>
+    <ul>
+      <li><a href="#">blog</a></li>
+      <li><a href="#">contacts</a></li>
+      <li><a href="#">rss</a></li>
+    </ul>
+  </nav>
+
+  <header class="hero">
+    <div class="prompt-line"><span class="u">alpe@dev</span>:~$ <span class="cmd">whoami --verbose</span></div>
+    <h1>Alberto Pertusi</h1>
+    <div class="role">Technical Lead &amp; Bug Manufacturer</div>
+    <p class="bio">
+      I build digital banking products at <span class="hl">Banca AideXa</span>, which means I break
+      things in production with regulatory consequences. Full-stack
+      <span class="hl-c">TypeScript</span> enthusiast — yes, that's my whole personality.
+      Based in Milan, fueled by espresso and existential dread.
+    </p>
+    <div class="keys">press <kbd>⌘K</kbd> to navigate · <kbd>↑↑↓↓←→←→BA</kbd> if you know, you know</div>
+  </header>
+
+  <section>
+    <h2>status</h2>
+    <div class="about-grid">
+      <div>
+        <p>Married to someone way out of my league. Dad since <span class="hl">April 29th</span> —
+        my sleep schedule now officially matches my deploy schedule:
+        <span class="hl-c">completely unpredictable</span>.</p>
+        <p>Proud Shiba Inu parent. I like dogs more than humans, which is a completely
+        reasonable opinion once you've met both.</p>
+      </div>
+      <div class="statbox">
+        <div class="row"><span class="k">dad.version</span><span class="v ok">1.0.0</span></div>
+        <div class="row"><span class="k">shipped</span><span class="v">2026-04-29</span></div>
+        <div class="row"><span class="k">uptime</span><span class="v">67 days, 0 naps</span></div>
+        <div class="row"><span class="k">espresso.today</span><span class="v">4 and counting</span></div>
+        <div class="row"><span class="k">shiba.loyalty</span><span class="v ok">verified</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>ls -la ./blog</h2>
+    <div class="posts">
+      <a class="post" href="#"><span class="date">2026-03-14</span><span class="pt">Your AI IDE Is a Backdoor</span></a>
+      <a class="post" href="#"><span class="date">2026-02-02</span><span class="pt">I Made AI Watch Me Type</span></a>
+      <a class="post" href="#"><span class="date">2026-01-11</span><span class="pt">AI Is Not the Metaverse, But the Dealer Is the Same</span></a>
+      <a class="post" href="#"><span class="date">2025-12-05</span><span class="pt">How I Built This Site</span></a>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Alberto Pertusi — no cookies, no tracking, no mercy</span>
+    <span><a href="#">github</a> · <a href="#">linkedin</a> · <a href="#">rss</a></span>
+  </footer>
+</div>
+</body>
+</html>

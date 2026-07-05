@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alberto Pertusi :: Phosphor v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0d10;
+    --bg-2: #14141a;
+    --bg-3: #1b1b23;
+    --accent: #f2f2f5;
+    --accent-dim: #b8b8c4;
+    --accent-2: #8ab4ff;
+    --warn: #ffb347;
+    --text: #d4d4dc;
+    --muted: #6e6e7c;
+    --border: #26262f;
+    --glow: rgba(242,242,245,0.35);
+    --glow-soft: rgba(242,242,245,0.22);
+    --vign: rgba(242,242,245,0.04);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Mono', monospace;
+    line-height: 1.6;
+    transition: background .3s, color .3s;
+  }
+  body::after {
+    content: '';
+    position: fixed; inset: 0;
+    background: repeating-linear-gradient(0deg, rgba(0,0,0,0.15) 0px, rgba(0,0,0,0.15) 1px, transparent 1px, transparent 3px);
+    pointer-events: none;
+    z-index: 999;
+  }
+  .vignette {
+    position: fixed; inset: 0;
+    background: radial-gradient(ellipse at 50% 30%, var(--vign), transparent 60%);
+    pointer-events: none;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+
+  nav {
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; background: var(--bg); z-index: 10;
+  }
+  .nav-inner {
+    max-width: 880px; margin: 0 auto; padding: 20px 24px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .logo { color: var(--accent); font-weight: 700; text-shadow: 0 0 12px var(--glow); }
+  .logo::before { content: '▊ '; animation: blink 1.2s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+  nav ul { display: flex; gap: 24px; list-style: none; }
+  nav a { color: var(--muted); text-decoration: none; font-size: 14px; transition: color .2s, text-shadow .2s; }
+  nav a:hover { color: var(--accent); text-shadow: 0 0 10px var(--glow); }
+  nav a::before { content: './'; opacity: .5; }
+
+  .hero { padding: 80px 0 60px; }
+  .term {
+    border: 1px solid var(--border); border-radius: 10px; background: var(--bg-2);
+    box-shadow: 0 0 40px -12px var(--glow-soft), 0 20px 50px -30px rgba(0,0,0,.8);
+    overflow: hidden;
+  }
+  .term-bar {
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 14px; background: var(--bg-3); border-bottom: 1px solid var(--border);
+  }
+  .term-bar .dot { width: 11px; height: 11px; border-radius: 50%; background: var(--border); }
+  .term-bar .title { margin-left: auto; margin-right: auto; font-size: 12px; color: var(--muted); }
+  .term-body { padding: 28px 28px 32px; }
+  .hero-grid { display: flex; gap: 28px; align-items: flex-start; }
+  .hero-main { flex: 1; min-width: 0; }
+  .avatar-slot { flex-shrink: 0; text-align: center; }
+  .avatar {
+    width: 132px; height: 132px; border-radius: 8px; display: block;
+    border: 1px solid var(--border);
+    box-shadow: 0 0 24px -6px var(--glow-soft);
+    image-rendering: auto;
+  }
+  .avatar-slot .cap { font-size: 11px; color: var(--muted); margin-top: 8px; display: block; }
+  .avatar-slot .cap::before { content: '$ '; }
+  @media (max-width: 640px) {
+    .hero-grid { flex-direction: column-reverse; }
+    .avatar { width: 96px; height: 96px; }
+  }
+  .prompt-line { color: var(--muted); font-size: 14px; margin-bottom: 12px; }
+  .prompt-line .u { color: var(--accent-2); }
+  .prompt-line .cmd { color: var(--text); }
+  .prompt-line .cmd::after {
+    content: '▊'; color: var(--accent); animation: blink 1s steps(1) infinite; margin-left: 2px;
+  }
+  h1 {
+    font-size: clamp(2rem, 6vw, 3.2rem);
+    font-weight: 700;
+    color: var(--accent);
+    text-shadow: 0 0 24px var(--glow-soft);
+    letter-spacing: -0.02em;
+    margin: 10px 0 4px;
+  }
+  .role { font-size: clamp(1rem, 2.5vw, 1.2rem); color: var(--warn); margin-bottom: 22px; }
+  .role::before { content: '=> '; color: var(--muted); }
+  .role .flags { font-size: .78em; color: var(--muted); }
+  .bio { max-width: 60ch; font-size: 15px; }
+  .bio + .bio { margin-top: 12px; }
+  .hl { color: var(--accent); }
+  .hl-c { color: var(--accent-2); }
+  .keys { color: var(--muted); font-size: 13px; margin-top: 26px; }
+  kbd {
+    border: 1px solid var(--border); border-radius: 4px; padding: 1px 7px;
+    background: var(--bg-3); color: var(--accent-dim); font-family: inherit; font-size: 12px;
+  }
+
+  section { padding: 56px 0; border-top: 1px solid var(--border); }
+  h2 { font-size: 14px; text-transform: uppercase; letter-spacing: .18em; color: var(--muted); margin-bottom: 28px; }
+  h2::before { content: '## '; color: var(--accent-dim); }
+
+  .proc-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  .proc-table th {
+    text-align: left; color: var(--muted); font-weight: 500; font-size: 12px;
+    text-transform: uppercase; letter-spacing: .1em;
+    padding: 8px 14px; border-bottom: 1px solid var(--border);
+  }
+  .proc-table td { padding: 9px 14px; border-bottom: 1px dashed var(--border); }
+  .proc-table tr:last-child td { border-bottom: none; }
+  .proc-table tr:hover td { background: var(--bg-2); }
+  .proc-table .pid { color: var(--muted); }
+  .proc-table .pname { color: var(--accent); }
+  .proc-table .cpu { color: var(--warn); }
+  .proc-table .stat { color: var(--accent-2); }
+  .bar { display: inline-block; width: 90px; height: 8px; border: 1px solid var(--border); border-radius: 2px; vertical-align: middle; margin-right: 8px; overflow: hidden; }
+  .bar i { display: block; height: 100%; background: var(--accent); box-shadow: 0 0 8px var(--glow); }
+
+  .posts { display: flex; flex-direction: column; }
+  .post {
+    display: flex; gap: 20px; align-items: baseline;
+    padding: 16px 12px; border-radius: 6px;
+    text-decoration: none; transition: background .15s;
+  }
+  .post:hover { background: var(--bg-2); }
+  .post:hover .pt { color: var(--accent); text-shadow: 0 0 10px var(--glow); }
+  .post .date { color: var(--muted); font-size: 13px; flex-shrink: 0; width: 96px; }
+  .post .meta { display: flex; flex-direction: column; gap: 3px; }
+  .post .pt { color: var(--text); font-size: 15px; font-weight: 500; transition: all .15s; }
+  .post .excerpt { color: var(--muted); font-size: 13px; }
+  .post .read { color: var(--muted); font-size: 12px; flex-shrink: 0; margin-left: auto; }
+  .more { display: inline-block; margin-top: 18px; color: var(--accent-dim); text-decoration: none; font-size: 14px; }
+  .more:hover { color: var(--accent); text-shadow: 0 0 10px var(--glow); }
+  .more::before { content: '$ '; color: var(--muted); }
+
+  .connect { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  @media (max-width: 700px) { .connect { grid-template-columns: 1fr; } }
+  .conn {
+    border: 1px solid var(--border); background: var(--bg-2); border-radius: 8px;
+    padding: 16px 18px; text-decoration: none; transition: all .15s; display: block;
+  }
+  .conn:hover { border-color: var(--accent-dim); box-shadow: 0 0 20px -6px var(--glow-soft); transform: translateY(-2px); }
+  .conn .cmd-line { color: var(--muted); font-size: 12.5px; }
+  .conn .cmd-line::before { content: '$ '; }
+  .conn .out { color: var(--accent); font-size: 14px; font-weight: 500; margin-top: 6px; display: block; }
+
+  footer {
+    border-top: 1px solid var(--border); padding: 32px 0 48px;
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+    color: var(--muted); font-size: 13px;
+  }
+  footer .exit::before { content: '$ '; }
+  footer .exit .z { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="vignette"></div>
+<nav>
+  <div class="nav-inner">
+    <span class="logo">alpe.dev</span>
+    <ul>
+      <li><a href="#blog">blog</a></li>
+      <li><a href="#connect">contacts</a></li>
+      <li><a href="#">rss</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="term">
+      <div class="term-bar">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        <span class="title">alpe@dev: ~</span>
+      </div>
+      <div class="term-body">
+        <div class="prompt-line"><span class="u">alpe@dev</span>:~$ <span class="cmd" id="typed"></span></div>
+        <div id="hero-out" style="opacity:0; transition: opacity .5s;">
+          <div class="hero-grid">
+            <div class="hero-main">
+              <h1>Alberto Pertusi</h1>
+              <div class="role">Full Stack Software Engineer <span class="flags">[can lead humans, prefers dogs]</span></div>
+              <p class="bio">
+                I move money for a living at <span class="hl">Mollie</span>, which means when I break
+                things in production, payments stop. No pressure. Full-stack
+                <span class="hl-c">TypeScript</span> enthusiast. Yes, that's my whole personality.
+                Based in Milan, fueled by espresso and existential dread.
+              </p>
+              <p class="bio">
+                Married to someone way out of my league. Dad since <span class="hl">April 29th</span>.
+                Proud Shiba Inu parent: I like dogs more than humans, which is a completely
+                reasonable opinion once you've met both.
+              </p>
+              <div class="keys">press <kbd>⌘K</kbd> to navigate · <kbd>↑↑↓↓←→←→BA</kbd> if you know, you know</div>
+            </div>
+            <div class="avatar-slot">
+              <img class="avatar" src="avatar.png" alt="Alberto Pertusi, Matrix-style" width="132" height="132">
+              <span class="cap">imgcat ./me.png</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="proc">
+    <h2>htop :: life processes</h2>
+    <table class="proc-table">
+      <thead><tr><th>pid</th><th>process</th><th>cpu</th><th>uptime</th><th>status</th></tr></thead>
+      <tbody>
+        <tr><td class="pid">001</td><td class="pname">dad.service</td><td><span class="bar"><i style="width:98%"></i></span><span class="cpu">98%</span></td><td>67 days</td><td class="stat">S+ (sleepless)</td></tr>
+        <tr><td class="pid">002</td><td class="pname">typescript.d</td><td><span class="bar"><i style="width:71%"></i></span><span class="cpu">71%</span></td><td>9 years</td><td class="stat">R (running)</td></tr>
+        <tr><td class="pid">003</td><td class="pname">espresso.io</td><td><span class="bar"><i style="width:64%"></i></span><span class="cpu">64%</span></td><td>daily</td><td class="stat">D (dependent)</td></tr>
+        <tr><td class="pid">004</td><td class="pname">jvm.hotspot</td><td><span class="bar"><i style="width:66%"></i></span><span class="cpu">66%</span></td><td>since Mollie</td><td class="stat">W (still warming up)</td></tr>
+        <tr><td class="pid">005</td><td class="pname">arch.initiatives</td><td><span class="bar"><i style="width:53%"></i></span><span class="cpu">53%</span></td><td>quarterly</td><td class="stat">D (drawing boxes &amp; arrows)</td></tr>
+        <tr><td class="pid">006</td><td class="pname">shiba.watchdog</td><td><span class="bar"><i style="width:42%"></i></span><span class="cpu">42%</span></td><td>5 years</td><td class="stat">S (very good boy)</td></tr>
+        <tr><td class="pid">007</td><td class="pname">sleep</td><td><span class="bar"><i style="width:4%"></i></span><span class="cpu">4%</span></td><td>n/a</td><td class="stat">Z (zombie)</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="blog">
+    <h2>tail -f ./blog</h2>
+    <div class="posts">
+      <a class="post" href="#">
+        <span class="date">2026-03-14</span>
+        <span class="meta">
+          <span class="pt">Your AI IDE Is a Backdoor</span>
+          <span class="excerpt">On the security model we all silently agreed to when we let agents into our editors.</span>
+        </span>
+        <span class="read">7 min</span>
+      </a>
+      <a class="post" href="#">
+        <span class="date">2026-02-02</span>
+        <span class="meta">
+          <span class="pt">I Made AI Watch Me Type</span>
+          <span class="excerpt">An experiment in learning Java with a very patient, very judgmental copilot.</span>
+        </span>
+        <span class="read">6 min</span>
+      </a>
+      <a class="post" href="#">
+        <span class="date">2026-01-11</span>
+        <span class="meta">
+          <span class="pt">AI Is Not the Metaverse, But the Dealer Is the Same</span>
+          <span class="excerpt">Hype cycles, pricing games, and why this one is different. Mostly.</span>
+        </span>
+        <span class="read">8 min</span>
+      </a>
+    </div>
+    <a class="more" href="#">cat ./blog/* | less</a>
+  </section>
+
+  <section id="connect">
+    <h2>connect</h2>
+    <div class="connect">
+      <a class="conn" href="#">
+        <span class="cmd-line">gh repo view</span>
+        <span class="out">github.com/alpe89</span>
+      </a>
+      <a class="conn" href="#">
+        <span class="cmd-line">open --professional</span>
+        <span class="out">linkedin/albertopertusi</span>
+      </a>
+      <a class="conn" href="#">
+        <span class="cmd-line">curl -X POST /contact</span>
+        <span class="out">say hello →</span>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <span class="exit">echo $? <span class="z">0</span> · © 2026 Alberto Pertusi</span>
+    <span>no cookies · no tracking · 100% organic bugs</span>
+  </footer>
+</div>
+
+<script>
+  // typing animation
+  const cmd = 'whoami --verbose';
+  const typed = document.getElementById('typed');
+  const out = document.getElementById('hero-out');
+  let i = 0;
+  (function type() {
+    if (i <= cmd.length) {
+      typed.textContent = cmd.slice(0, i++);
+      setTimeout(type, 45 + Math.random() * 60);
+    } else {
+      setTimeout(() => { out.style.opacity = 1; }, 200);
+    }
+  })();
+</script>
+</body>
+</html>
