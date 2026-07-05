@@ -1,193 +1,403 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Alberto Pertusi — Dusk</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #0b0a14;
-    --surface: rgba(255,255,255,0.045);
-    --surface-hover: rgba(255,255,255,0.08);
-    --border: rgba(255,255,255,0.09);
-    --text: #ece9f7;
-    --muted: #9a94b8;
-    --violet: #a78bfa;
-    --rose: #fb7185;
-    --peach: #fdba74;
-    --grad: linear-gradient(100deg, #a78bfa, #fb7185 55%, #fdba74);
-  }
-  @media (prefers-color-scheme: light) {
-    :root {
-      --bg: #f6f4fb;
-      --surface: rgba(255,255,255,0.72);
-      --surface-hover: #ffffff;
-      --border: rgba(30,20,60,0.1);
-      --text: #221d35;
-      --muted: #6b6488;
-      --violet: #7c5cf0;
-      --rose: #e5486c;
-      --peach: #e08a3c;
-      --grad: linear-gradient(100deg, #7c5cf0, #e5486c 55%, #e08a3c);
-    }
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    background: var(--bg); color: var(--text);
-    font-family: 'Inter', sans-serif; line-height: 1.65;
-    overflow-x: hidden;
-  }
-  /* gradient mesh */
-  .mesh { position: fixed; inset: 0; pointer-events: none; filter: blur(90px); opacity: .5; }
-  .mesh .b { position: absolute; border-radius: 50%; }
-  .mesh .b1 { width: 480px; height: 480px; background: #7c3aed55; top: -120px; left: -80px; }
-  .mesh .b2 { width: 420px; height: 420px; background: #e11d4844; top: 10%; right: -120px; }
-  .mesh .b3 { width: 380px; height: 380px; background: #f9731633; top: 55%; left: 30%; }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alberto Pertusi — Dusk</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #0b0a14;
+        --surface: rgba(255, 255, 255, 0.045);
+        --surface-hover: rgba(255, 255, 255, 0.08);
+        --border: rgba(255, 255, 255, 0.09);
+        --text: #ece9f7;
+        --muted: #9a94b8;
+        --violet: #a78bfa;
+        --rose: #fb7185;
+        --peach: #fdba74;
+        --grad: linear-gradient(100deg, #a78bfa, #fb7185 55%, #fdba74);
+      }
+      @media (prefers-color-scheme: light) {
+        :root {
+          --bg: #f6f4fb;
+          --surface: rgba(255, 255, 255, 0.72);
+          --surface-hover: #ffffff;
+          --border: rgba(30, 20, 60, 0.1);
+          --text: #221d35;
+          --muted: #6b6488;
+          --violet: #7c5cf0;
+          --rose: #e5486c;
+          --peach: #e08a3c;
+          --grad: linear-gradient(100deg, #7c5cf0, #e5486c 55%, #e08a3c);
+        }
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: 'Inter', sans-serif;
+        line-height: 1.65;
+        overflow-x: hidden;
+      }
+      /* gradient mesh */
+      .mesh {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        filter: blur(90px);
+        opacity: 0.5;
+      }
+      .mesh .b {
+        position: absolute;
+        border-radius: 50%;
+      }
+      .mesh .b1 {
+        width: 480px;
+        height: 480px;
+        background: #7c3aed55;
+        top: -120px;
+        left: -80px;
+      }
+      .mesh .b2 {
+        width: 420px;
+        height: 420px;
+        background: #e11d4844;
+        top: 10%;
+        right: -120px;
+      }
+      .mesh .b3 {
+        width: 380px;
+        height: 380px;
+        background: #f9731633;
+        top: 55%;
+        left: 30%;
+      }
 
-  .wrap { max-width: 860px; margin: 0 auto; padding: 0 24px; position: relative; }
-  nav {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 22px 0;
-  }
-  .logo { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 19px; }
-  .logo .dot { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
-  nav ul { display: flex; gap: 8px; list-style: none; }
-  nav a {
-    color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500;
-    padding: 8px 14px; border-radius: 999px; transition: all .2s;
-  }
-  nav a:hover { color: var(--text); background: var(--surface-hover); }
+      .wrap {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 0 24px;
+        position: relative;
+      }
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 22px 0;
+      }
+      .logo {
+        font-family: 'Sora', sans-serif;
+        font-weight: 800;
+        font-size: 19px;
+      }
+      .logo .dot {
+        background: var(--grad);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      nav ul {
+        display: flex;
+        gap: 8px;
+        list-style: none;
+      }
+      nav a {
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        padding: 8px 14px;
+        border-radius: 999px;
+        transition: all 0.2s;
+      }
+      nav a:hover {
+        color: var(--text);
+        background: var(--surface-hover);
+      }
 
-  .hero { padding: 90px 0 70px; text-align: center; }
-  .pill {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: var(--muted);
-    border: 1px solid var(--border); background: var(--surface);
-    padding: 6px 16px; border-radius: 999px; margin-bottom: 28px;
-    backdrop-filter: blur(12px);
-  }
-  .pill .dot-live { width: 7px; height: 7px; border-radius: 50%; background: #34d399; box-shadow: 0 0 8px #34d399; }
-  h1 {
-    font-family: 'Sora', sans-serif; font-weight: 800;
-    font-size: clamp(2.6rem, 8vw, 4.4rem); line-height: 1.06; letter-spacing: -0.03em;
-    margin-bottom: 10px;
-  }
-  h1 .grad { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
-  .role { font-family: 'JetBrains Mono', monospace; font-size: 15px; color: var(--muted); margin-bottom: 28px; }
-  .hero p.bio { max-width: 58ch; margin: 0 auto; font-size: 17px; color: var(--muted); }
-  .hero p.bio strong { color: var(--text); font-weight: 600; }
-  .cta-row { margin-top: 36px; display: flex; gap: 14px; justify-content: center; }
-  .btn {
-    font-family: 'Sora', sans-serif; font-weight: 600; font-size: 14.5px;
-    padding: 12px 26px; border-radius: 999px; text-decoration: none; transition: all .2s;
-  }
-  .btn.primary { background: var(--grad); color: #fff; box-shadow: 0 8px 28px -8px #a78bfa88; }
-  .btn.primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px -8px #a78bfaaa; }
-  .btn.ghost { color: var(--text); border: 1px solid var(--border); background: var(--surface); backdrop-filter: blur(12px); }
-  .btn.ghost:hover { background: var(--surface-hover); }
+      .hero {
+        padding: 90px 0 70px;
+        text-align: center;
+      }
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 12.5px;
+        color: var(--muted);
+        border: 1px solid var(--border);
+        background: var(--surface);
+        padding: 6px 16px;
+        border-radius: 999px;
+        margin-bottom: 28px;
+        backdrop-filter: blur(12px);
+      }
+      .pill .dot-live {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #34d399;
+        box-shadow: 0 0 8px #34d399;
+      }
+      h1 {
+        font-family: 'Sora', sans-serif;
+        font-weight: 800;
+        font-size: clamp(2.6rem, 8vw, 4.4rem);
+        line-height: 1.06;
+        letter-spacing: -0.03em;
+        margin-bottom: 10px;
+      }
+      h1 .grad {
+        background: var(--grad);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      .role {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 15px;
+        color: var(--muted);
+        margin-bottom: 28px;
+      }
+      .hero p.bio {
+        max-width: 58ch;
+        margin: 0 auto;
+        font-size: 17px;
+        color: var(--muted);
+      }
+      .hero p.bio strong {
+        color: var(--text);
+        font-weight: 600;
+      }
+      .cta-row {
+        margin-top: 36px;
+        display: flex;
+        gap: 14px;
+        justify-content: center;
+      }
+      .btn {
+        font-family: 'Sora', sans-serif;
+        font-weight: 600;
+        font-size: 14.5px;
+        padding: 12px 26px;
+        border-radius: 999px;
+        text-decoration: none;
+        transition: all 0.2s;
+      }
+      .btn.primary {
+        background: var(--grad);
+        color: #fff;
+        box-shadow: 0 8px 28px -8px #a78bfa88;
+      }
+      .btn.primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 32px -8px #a78bfaaa;
+      }
+      .btn.ghost {
+        color: var(--text);
+        border: 1px solid var(--border);
+        background: var(--surface);
+        backdrop-filter: blur(12px);
+      }
+      .btn.ghost:hover {
+        background: var(--surface-hover);
+      }
 
-  section { padding: 56px 0; }
-  h2 {
-    font-family: 'Sora', sans-serif; font-weight: 700; font-size: 24px;
-    letter-spacing: -0.02em; margin-bottom: 26px;
-  }
-  .glass-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-  @media (max-width: 720px) { .glass-grid { grid-template-columns: 1fr; } }
-  .glass {
-    background: var(--surface); border: 1px solid var(--border); border-radius: 20px;
-    padding: 24px; backdrop-filter: blur(16px); transition: all .2s;
-  }
-  .glass:hover { background: var(--surface-hover); transform: translateY(-3px); }
-  .glass .emoji { font-size: 26px; margin-bottom: 12px; display: block; }
-  .glass h3 { font-family: 'Sora', sans-serif; font-size: 16px; font-weight: 700; margin-bottom: 8px; }
-  .glass p { font-size: 14px; color: var(--muted); }
-  .glass .tag { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--violet); display: block; margin-top: 12px; }
+      section {
+        padding: 56px 0;
+      }
+      h2 {
+        font-family: 'Sora', sans-serif;
+        font-weight: 700;
+        font-size: 24px;
+        letter-spacing: -0.02em;
+        margin-bottom: 26px;
+      }
+      .glass-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+      }
+      @media (max-width: 720px) {
+        .glass-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .glass {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 24px;
+        backdrop-filter: blur(16px);
+        transition: all 0.2s;
+      }
+      .glass:hover {
+        background: var(--surface-hover);
+        transform: translateY(-3px);
+      }
+      .glass .emoji {
+        font-size: 26px;
+        margin-bottom: 12px;
+        display: block;
+      }
+      .glass h3 {
+        font-family: 'Sora', sans-serif;
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+      .glass p {
+        font-size: 14px;
+        color: var(--muted);
+      }
+      .glass .tag {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 12px;
+        color: var(--violet);
+        display: block;
+        margin-top: 12px;
+      }
 
-  .posts { display: flex; flex-direction: column; gap: 14px; }
-  .post {
-    display: flex; justify-content: space-between; align-items: center; gap: 20px;
-    background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
-    padding: 20px 24px; text-decoration: none; color: inherit;
-    backdrop-filter: blur(16px); transition: all .2s;
-  }
-  .post:hover { background: var(--surface-hover); transform: translateX(4px); border-color: var(--violet); }
-  .post .pt { font-family: 'Sora', sans-serif; font-weight: 600; font-size: 16.5px; }
-  .post .date { font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: var(--muted); flex-shrink: 0; }
+      .posts {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      .post {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 20px 24px;
+        text-decoration: none;
+        color: inherit;
+        backdrop-filter: blur(16px);
+        transition: all 0.2s;
+      }
+      .post:hover {
+        background: var(--surface-hover);
+        transform: translateX(4px);
+        border-color: var(--violet);
+      }
+      .post .pt {
+        font-family: 'Sora', sans-serif;
+        font-weight: 600;
+        font-size: 16.5px;
+      }
+      .post .date {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 12.5px;
+        color: var(--muted);
+        flex-shrink: 0;
+      }
 
-  footer {
-    border-top: 1px solid var(--border); padding: 32px 0 52px;
-    display: flex; justify-content: space-between; color: var(--muted); font-size: 13.5px;
-  }
-  footer a { color: var(--muted); text-decoration: none; margin-left: 16px; transition: color .2s; }
-  footer a:hover { color: var(--violet); }
-</style>
-</head>
-<body>
-<div class="mesh"><div class="b b1"></div><div class="b b2"></div><div class="b b3"></div></div>
-<div class="wrap">
-  <nav>
-    <span class="logo">alpe<span class="dot">.dev</span></span>
-    <ul>
-      <li><a href="#">Blog</a></li>
-      <li><a href="#">Contacts</a></li>
-      <li><a href="#">RSS</a></li>
-    </ul>
-  </nav>
-
-  <header class="hero">
-    <span class="pill"><span class="dot-live"></span>dad v1.0.0 in production since apr 29</span>
-    <h1>Alberto Pertusi<br><span class="grad">builds &amp; breaks things.</span></h1>
-    <div class="role">Technical Lead &amp; Bug Manufacturer</div>
-    <p class="bio">
-      Digital banking products at <strong>Banca AideXa</strong> — breaking things in production with
-      regulatory consequences. Full-stack <strong>TypeScript</strong> enthusiast, based in Milan,
-      fueled by espresso and existential dread.
-    </p>
-    <div class="cta-row">
-      <a class="btn primary" href="#">Read the blog</a>
-      <a class="btn ghost" href="#">Get in touch</a>
+      footer {
+        border-top: 1px solid var(--border);
+        padding: 32px 0 52px;
+        display: flex;
+        justify-content: space-between;
+        color: var(--muted);
+        font-size: 13.5px;
+      }
+      footer a {
+        color: var(--muted);
+        text-decoration: none;
+        margin-left: 16px;
+        transition: color 0.2s;
+      }
+      footer a:hover {
+        color: var(--violet);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="mesh">
+      <div class="b b1"></div>
+      <div class="b b2"></div>
+      <div class="b b3"></div>
     </div>
-  </header>
+    <div class="wrap">
+      <nav>
+        <span class="logo">alpe<span class="dot">.dev</span></span>
+        <ul>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Contacts</a></li>
+          <li><a href="#">RSS</a></li>
+        </ul>
+      </nav>
 
-  <section>
-    <h2>Currently</h2>
-    <div class="glass-grid">
-      <div class="glass">
-        <span class="emoji">👶</span>
-        <h3>Dad Mode</h3>
-        <p>Sleep schedule now matches my deploy schedule: completely unpredictable.</p>
-        <span class="tag">uptime: 67 days</span>
-      </div>
-      <div class="glass">
-        <span class="emoji">🐕</span>
-        <h3>Shiba Department</h3>
-        <p>I like dogs more than humans — reasonable, once you've met both.</p>
-        <span class="tag">loyalty: verified</span>
-      </div>
-      <div class="glass">
-        <span class="emoji">☕</span>
-        <h3>Fuel Status</h3>
-        <p>Espresso-driven development. Milan supply chain, zero downtime.</p>
-        <span class="tag">shots: 4/day avg</span>
-      </div>
+      <header class="hero">
+        <span class="pill"><span class="dot-live"></span>dad v1.0.0 in production since apr 29</span>
+        <h1>Alberto Pertusi<br /><span class="grad">builds &amp; breaks things.</span></h1>
+        <div class="role">Technical Lead &amp; Bug Manufacturer</div>
+        <p class="bio">
+          Digital banking products at <strong>Banca AideXa</strong> — breaking things in production with regulatory
+          consequences. Full-stack <strong>TypeScript</strong> enthusiast, based in Milan, fueled by espresso and
+          existential dread.
+        </p>
+        <div class="cta-row">
+          <a class="btn primary" href="#">Read the blog</a>
+          <a class="btn ghost" href="#">Get in touch</a>
+        </div>
+      </header>
+
+      <section>
+        <h2>Currently</h2>
+        <div class="glass-grid">
+          <div class="glass">
+            <span class="emoji">👶</span>
+            <h3>Dad Mode</h3>
+            <p>Sleep schedule now matches my deploy schedule: completely unpredictable.</p>
+            <span class="tag">uptime: 67 days</span>
+          </div>
+          <div class="glass">
+            <span class="emoji">🐕</span>
+            <h3>Shiba Department</h3>
+            <p>I like dogs more than humans — reasonable, once you've met both.</p>
+            <span class="tag">loyalty: verified</span>
+          </div>
+          <div class="glass">
+            <span class="emoji">☕</span>
+            <h3>Fuel Status</h3>
+            <p>Espresso-driven development. Milan supply chain, zero downtime.</p>
+            <span class="tag">shots: 4/day avg</span>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Recent writing</h2>
+        <div class="posts">
+          <a class="post" href="#"
+            ><span class="pt">Your AI IDE Is a Backdoor</span><span class="date">2026-03-14</span></a
+          >
+          <a class="post" href="#"
+            ><span class="pt">I Made AI Watch Me Type</span><span class="date">2026-02-02</span></a
+          >
+          <a class="post" href="#"
+            ><span class="pt">AI Is Not the Metaverse, But the Dealer Is the Same</span
+            ><span class="date">2026-01-11</span></a
+          >
+        </div>
+      </section>
+
+      <footer>
+        <span>© 2026 Alberto Pertusi</span>
+        <span><a href="#">GitHub</a><a href="#">LinkedIn</a><a href="#">RSS</a></span>
+      </footer>
     </div>
-  </section>
-
-  <section>
-    <h2>Recent writing</h2>
-    <div class="posts">
-      <a class="post" href="#"><span class="pt">Your AI IDE Is a Backdoor</span><span class="date">2026-03-14</span></a>
-      <a class="post" href="#"><span class="pt">I Made AI Watch Me Type</span><span class="date">2026-02-02</span></a>
-      <a class="post" href="#"><span class="pt">AI Is Not the Metaverse, But the Dealer Is the Same</span><span class="date">2026-01-11</span></a>
-    </div>
-  </section>
-
-  <footer>
-    <span>© 2026 Alberto Pertusi</span>
-    <span><a href="#">GitHub</a><a href="#">LinkedIn</a><a href="#">RSS</a></span>
-  </footer>
-</div>
-</body>
+  </body>
 </html>

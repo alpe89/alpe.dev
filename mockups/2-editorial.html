@@ -1,168 +1,270 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Alberto Pertusi — Editorial</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --paper: #faf6f0;
-    --paper-2: #f3ede3;
-    --ink: #1c1917;
-    --ink-2: #57534e;
-    --muted: #a8a29e;
-    --accent: #c2410c;
-    --accent-soft: #fed7aa;
-    --border: #e7ddd0;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    background: var(--paper);
-    color: var(--ink);
-    font-family: 'Inter', sans-serif;
-    line-height: 1.65;
-  }
-  .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
-  nav {
-    display: flex; justify-content: space-between; align-items: baseline;
-    padding: 28px 0;
-  }
-  .logo { font-family: 'Fraunces', serif; font-weight: 700; font-size: 20px; font-style: italic; }
-  nav ul { display: flex; gap: 26px; list-style: none; }
-  nav a {
-    color: var(--ink-2); text-decoration: none; font-size: 14px; font-weight: 500;
-    border-bottom: 1px solid transparent; transition: all .2s;
-  }
-  nav a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alberto Pertusi — Editorial</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --paper: #faf6f0;
+        --paper-2: #f3ede3;
+        --ink: #1c1917;
+        --ink-2: #57534e;
+        --muted: #a8a29e;
+        --accent: #c2410c;
+        --accent-soft: #fed7aa;
+        --border: #e7ddd0;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: var(--paper);
+        color: var(--ink);
+        font-family: 'Inter', sans-serif;
+        line-height: 1.65;
+      }
+      .wrap {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        padding: 28px 0;
+      }
+      .logo {
+        font-family: 'Fraunces', serif;
+        font-weight: 700;
+        font-size: 20px;
+        font-style: italic;
+      }
+      nav ul {
+        display: flex;
+        gap: 26px;
+        list-style: none;
+      }
+      nav a {
+        color: var(--ink-2);
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        border-bottom: 1px solid transparent;
+        transition: all 0.2s;
+      }
+      nav a:hover {
+        color: var(--accent);
+        border-bottom-color: var(--accent);
+      }
 
-  .hero { padding: 96px 0 72px; }
-  .kicker {
-    font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--accent);
-    text-transform: uppercase; letter-spacing: .14em; margin-bottom: 20px;
-  }
-  h1 {
-    font-family: 'Fraunces', serif;
-    font-size: clamp(2.6rem, 8vw, 4.6rem);
-    font-weight: 600;
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-    margin-bottom: 26px;
-  }
-  h1 em { font-style: italic; color: var(--accent); font-weight: 500; }
-  .hero p {
-    font-size: 19px; color: var(--ink-2); max-width: 56ch;
-  }
-  .hero p strong { color: var(--ink); font-weight: 600; }
+      .hero {
+        padding: 96px 0 72px;
+      }
+      .kicker {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 13px;
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        margin-bottom: 20px;
+      }
+      h1 {
+        font-family: 'Fraunces', serif;
+        font-size: clamp(2.6rem, 8vw, 4.6rem);
+        font-weight: 600;
+        line-height: 1.05;
+        letter-spacing: -0.02em;
+        margin-bottom: 26px;
+      }
+      h1 em {
+        font-style: italic;
+        color: var(--accent);
+        font-weight: 500;
+      }
+      .hero p {
+        font-size: 19px;
+        color: var(--ink-2);
+        max-width: 56ch;
+      }
+      .hero p strong {
+        color: var(--ink);
+        font-weight: 600;
+      }
 
-  section { padding: 56px 0; border-top: 1px solid var(--border); }
-  h2 {
-    font-family: 'Fraunces', serif; font-style: italic; font-weight: 500;
-    font-size: 24px; margin-bottom: 28px;
-  }
+      section {
+        padding: 56px 0;
+        border-top: 1px solid var(--border);
+      }
+      h2 {
+        font-family: 'Fraunces', serif;
+        font-style: italic;
+        font-weight: 500;
+        font-size: 24px;
+        margin-bottom: 28px;
+      }
 
-  .about p { font-size: 16.5px; color: var(--ink-2); margin-bottom: 16px; max-width: 62ch; }
-  .about .pull {
-    font-family: 'Fraunces', serif; font-style: italic; font-size: 21px; color: var(--ink);
-    border-left: 3px solid var(--accent); padding-left: 20px; margin: 28px 0;
-  }
-  .badge {
-    display: inline-block; background: var(--accent-soft); color: var(--accent);
-    font-family: 'JetBrains Mono', monospace; font-size: 12.5px; font-weight: 500;
-    padding: 2px 10px; border-radius: 999px; vertical-align: 1px;
-  }
+      .about p {
+        font-size: 16.5px;
+        color: var(--ink-2);
+        margin-bottom: 16px;
+        max-width: 62ch;
+      }
+      .about .pull {
+        font-family: 'Fraunces', serif;
+        font-style: italic;
+        font-size: 21px;
+        color: var(--ink);
+        border-left: 3px solid var(--accent);
+        padding-left: 20px;
+        margin: 28px 0;
+      }
+      .badge {
+        display: inline-block;
+        background: var(--accent-soft);
+        color: var(--accent);
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 12.5px;
+        font-weight: 500;
+        padding: 2px 10px;
+        border-radius: 999px;
+        vertical-align: 1px;
+      }
 
-  .posts { display: flex; flex-direction: column; }
-  .post {
-    display: block; text-decoration: none; color: inherit;
-    padding: 22px 0; border-bottom: 1px solid var(--border);
-  }
-  .post:last-child { border-bottom: none; }
-  .post .date {
-    font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: var(--muted);
-    display: block; margin-bottom: 6px;
-  }
-  .post .pt {
-    font-family: 'Fraunces', serif; font-size: 23px; font-weight: 600; line-height: 1.25;
-    transition: color .15s;
-  }
-  .post:hover .pt { color: var(--accent); }
-  .post .excerpt { font-size: 15px; color: var(--ink-2); margin-top: 6px; }
-  .more {
-    display: inline-block; margin-top: 24px; color: var(--accent); text-decoration: none;
-    font-weight: 500; font-size: 15px;
-  }
-  .more:hover { text-decoration: underline; }
+      .posts {
+        display: flex;
+        flex-direction: column;
+      }
+      .post {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+        padding: 22px 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .post:last-child {
+        border-bottom: none;
+      }
+      .post .date {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 12.5px;
+        color: var(--muted);
+        display: block;
+        margin-bottom: 6px;
+      }
+      .post .pt {
+        font-family: 'Fraunces', serif;
+        font-size: 23px;
+        font-weight: 600;
+        line-height: 1.25;
+        transition: color 0.15s;
+      }
+      .post:hover .pt {
+        color: var(--accent);
+      }
+      .post .excerpt {
+        font-size: 15px;
+        color: var(--ink-2);
+        margin-top: 6px;
+      }
+      .more {
+        display: inline-block;
+        margin-top: 24px;
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 15px;
+      }
+      .more:hover {
+        text-decoration: underline;
+      }
 
-  footer {
-    border-top: 1px solid var(--border); padding: 36px 0 56px;
-    display: flex; justify-content: space-between; align-items: baseline;
-    color: var(--muted); font-size: 14px;
-  }
-  footer a { color: var(--ink-2); text-decoration: none; margin-left: 16px; }
-  footer a:hover { color: var(--accent); }
-</style>
-</head>
-<body>
-<div class="wrap">
-  <nav>
-    <span class="logo">alpe.dev</span>
-    <ul>
-      <li><a href="#">Blog</a></li>
-      <li><a href="#">Contacts</a></li>
-      <li><a href="#">RSS</a></li>
-    </ul>
-  </nav>
+      footer {
+        border-top: 1px solid var(--border);
+        padding: 36px 0 56px;
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        color: var(--muted);
+        font-size: 14px;
+      }
+      footer a {
+        color: var(--ink-2);
+        text-decoration: none;
+        margin-left: 16px;
+      }
+      footer a:hover {
+        color: var(--accent);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <nav>
+        <span class="logo">alpe.dev</span>
+        <ul>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Contacts</a></li>
+          <li><a href="#">RSS</a></li>
+        </ul>
+      </nav>
 
-  <header class="hero">
-    <div class="kicker">Technical Lead &amp; Bug Manufacturer</div>
-    <h1>Alberto Pertusi writes code, essays &amp; the occasional <em>production incident</em>.</h1>
-    <p>
-      I build digital banking products at <strong>Banca AideXa</strong> — breaking things in
-      production, with regulatory consequences. Full-stack <strong>TypeScript</strong> enthusiast.
-      Based in Milan, fueled by espresso and existential dread.
-    </p>
-  </header>
+      <header class="hero">
+        <div class="kicker">Technical Lead &amp; Bug Manufacturer</div>
+        <h1>Alberto Pertusi writes code, essays &amp; the occasional <em>production incident</em>.</h1>
+        <p>
+          I build digital banking products at <strong>Banca AideXa</strong> — breaking things in production, with
+          regulatory consequences. Full-stack <strong>TypeScript</strong> enthusiast. Based in Milan, fueled by espresso
+          and existential dread.
+        </p>
+      </header>
 
-  <section class="about">
-    <h2>About, briefly</h2>
-    <p>
-      Married to someone way out of my league. Dad since April 29th <span class="badge">dad v1.0.0</span> —
-      my sleep schedule finally matches my deploy schedule: completely unpredictable.
-    </p>
-    <p class="pull">
-      "Proud Shiba Inu parent. I like dogs more than humans, which is a completely
-      reasonable opinion once you've met both."
-    </p>
-  </section>
+      <section class="about">
+        <h2>About, briefly</h2>
+        <p>
+          Married to someone way out of my league. Dad since April 29th <span class="badge">dad v1.0.0</span> — my sleep
+          schedule finally matches my deploy schedule: completely unpredictable.
+        </p>
+        <p class="pull">
+          "Proud Shiba Inu parent. I like dogs more than humans, which is a completely reasonable opinion once you've
+          met both."
+        </p>
+      </section>
 
-  <section>
-    <h2>Recent writing</h2>
-    <div class="posts">
-      <a class="post" href="#">
-        <span class="date">March 14, 2026</span>
-        <span class="pt">Your AI IDE Is a Backdoor</span>
-        <p class="excerpt">On the security model we all silently agreed to when we let agents into our editors.</p>
-      </a>
-      <a class="post" href="#">
-        <span class="date">February 2, 2026</span>
-        <span class="pt">I Made AI Watch Me Type</span>
-        <p class="excerpt">An experiment in learning Java with a very patient, very judgmental copilot.</p>
-      </a>
-      <a class="post" href="#">
-        <span class="date">January 11, 2026</span>
-        <span class="pt">AI Is Not the Metaverse, But the Dealer Is the Same</span>
-        <p class="excerpt">Hype cycles, pricing games, and why this one is different — mostly.</p>
-      </a>
+      <section>
+        <h2>Recent writing</h2>
+        <div class="posts">
+          <a class="post" href="#">
+            <span class="date">March 14, 2026</span>
+            <span class="pt">Your AI IDE Is a Backdoor</span>
+            <p class="excerpt">On the security model we all silently agreed to when we let agents into our editors.</p>
+          </a>
+          <a class="post" href="#">
+            <span class="date">February 2, 2026</span>
+            <span class="pt">I Made AI Watch Me Type</span>
+            <p class="excerpt">An experiment in learning Java with a very patient, very judgmental copilot.</p>
+          </a>
+          <a class="post" href="#">
+            <span class="date">January 11, 2026</span>
+            <span class="pt">AI Is Not the Metaverse, But the Dealer Is the Same</span>
+            <p class="excerpt">Hype cycles, pricing games, and why this one is different — mostly.</p>
+          </a>
+        </div>
+        <a class="more" href="#">All posts →</a>
+      </section>
+
+      <footer>
+        <span>© 2026 Alberto Pertusi</span>
+        <span><a href="#">GitHub</a><a href="#">LinkedIn</a><a href="#">RSS</a></span>
+      </footer>
     </div>
-    <a class="more" href="#">All posts →</a>
-  </section>
-
-  <footer>
-    <span>© 2026 Alberto Pertusi</span>
-    <span><a href="#">GitHub</a><a href="#">LinkedIn</a><a href="#">RSS</a></span>
-  </footer>
-</div>
-</body>
+  </body>
 </html>

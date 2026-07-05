@@ -19,6 +19,7 @@
     "format:check": "oxfmt --check ."
   },
   "dependencies": {
+    "@fontsource/ibm-plex-mono": "^5.2.7",
     "@tailwindcss/vite": "^4.1.18",
     "@tanstack/react-devtools": "latest",
     "@tanstack/react-query": "latest",

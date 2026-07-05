@@ -5,11 +5,7 @@
     "react": {
       "version": "19.2.0"
     },
-    "jsx-a11y": {
-      "components": {
-        "Link": "a"
-      }
-    }
+    "jsx-a11y": {}
   },
   "ignorePatterns": ["dist/**", "node_modules/**", "src/routeTree.gen.ts", "mockups/**"]
 }
