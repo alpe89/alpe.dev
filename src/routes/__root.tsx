@@ -58,7 +58,6 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body>
-        <div className="vignette" aria-hidden="true" />
         <Nav />
         {children}
         <Footer />

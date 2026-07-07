@@ -25,7 +25,7 @@ function Blog() {
 
   return (
     <main className="wrap">
-      <header className="py-20">
+      <header className="pt-32 pb-20">
         <div className="term">
           <div className="term-bar">
             <span className="dot" />
