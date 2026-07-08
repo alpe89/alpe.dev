@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alberto Pertusi — Riso</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #f0ece2;
+        --black: #16130f;
+        --yellow: #ffd23f;
+        --blue: #3066be;
+        --red: #ee4266;
+        --green: #21bf73;
+        --shadow: 6px 6px 0 var(--black);
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: var(--bg);
+        color: var(--black);
+        font-family: 'Space Grotesk', sans-serif;
+        line-height: 1.55;
+      }
+      .wrap {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 0;
+      }
+      .logo {
+        font-family: 'Archivo Black', sans-serif;
+        font-size: 22px;
+        background: var(--black);
+        color: var(--yellow);
+        padding: 4px 12px;
+        transform: rotate(-2deg);
+        display: inline-block;
+      }
+      nav ul {
+        display: flex;
+        gap: 12px;
+        list-style: none;
+      }
+      nav a {
+        font-family: 'Space Mono', monospace;
+        font-weight: 700;
+        font-size: 14px;
+        color: var(--black);
+        text-decoration: none;
+        border: 2.5px solid var(--black);
+        background: #fff;
+        padding: 6px 14px;
+        box-shadow: 3px 3px 0 var(--black);
+        transition: all 0.12s;
+      }
+      nav a:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 5px 5px 0 var(--black);
+        background: var(--yellow);
+      }
+
+      .hero {
+        padding: 72px 0 56px;
+        position: relative;
+      }
+      .sticker {
+        position: absolute;
+        font-family: 'Space Mono', monospace;
+        font-weight: 700;
+        font-size: 12.5px;
+        border: 2.5px solid var(--black);
+        padding: 5px 12px;
+        box-shadow: 3px 3px 0 var(--black);
+      }
+      .sticker.s1 {
+        top: 46px;
+        right: 4%;
+        background: var(--red);
+        color: #fff;
+        transform: rotate(6deg);
+      }
+      .sticker.s2 {
+        top: 120px;
+        right: 12%;
+        background: var(--green);
+        color: var(--black);
+        transform: rotate(-4deg);
+      }
+      h1 {
+        font-family: 'Archivo Black', sans-serif;
+        font-size: clamp(2.6rem, 9vw, 5.2rem);
+        line-height: 0.98;
+        text-transform: uppercase;
+        letter-spacing: -0.01em;
+        max-width: 11ch;
+      }
+      h1 .hl-y {
+        background: var(--yellow);
+        padding: 0 8px;
+        box-decoration-break: clone;
+      }
+      h1 .hl-b {
+        background: var(--blue);
+        color: #fff;
+        padding: 0 8px;
+      }
+      .role {
+        display: inline-block;
+        margin-top: 22px;
+        font-family: 'Space Mono', monospace;
+        font-weight: 700;
+        font-size: 15px;
+        background: #fff;
+        border: 2.5px solid var(--black);
+        box-shadow: var(--shadow);
+        padding: 10px 18px;
+        transform: rotate(-1deg);
+      }
+      .hero p.bio {
+        margin-top: 30px;
+        font-size: 17px;
+        max-width: 58ch;
+        font-weight: 500;
+      }
+      .hero p.bio strong {
+        background: var(--yellow);
+        padding: 0 4px;
+      }
+
+      .marquee {
+        border-top: 3px solid var(--black);
+        border-bottom: 3px solid var(--black);
+        background: var(--black);
+        color: var(--bg);
+        overflow: hidden;
+        white-space: nowrap;
+        font-family: 'Space Mono', monospace;
+        font-weight: 700;
+        font-size: 14px;
+        padding: 9px 0;
+      }
+      .marquee span {
+        display: inline-block;
+        animation: scroll 22s linear infinite;
+      }
+      @keyframes scroll {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+      .marquee em {
+        color: var(--yellow);
+        font-style: normal;
+      }
+
+      section {
+        padding: 60px 0;
+      }
+      h2 {
+        font-family: 'Archivo Black', sans-serif;
+        font-size: 30px;
+        text-transform: uppercase;
+        margin-bottom: 30px;
+        display: inline-block;
+        background: var(--blue);
+        color: #fff;
+        padding: 4px 14px;
+        transform: rotate(-1deg);
+        box-shadow: var(--shadow);
+      }
+
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+      @media (max-width: 760px) {
+        .cards {
+          grid-template-columns: 1fr;
+        }
+      }
+      .card {
+        background: #fff;
+        border: 3px solid var(--black);
+        box-shadow: var(--shadow);
+        padding: 22px;
+      }
+      .card.y {
+        background: var(--yellow);
+      }
+      .card h3 {
+        font-family: 'Archivo Black', sans-serif;
+        font-size: 17px;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+      }
+      .card p {
+        font-size: 14.5px;
+        font-weight: 500;
+      }
+      .card .mono {
+        font-family: 'Space Mono', monospace;
+        font-size: 13px;
+        margin-top: 10px;
+      }
+
+      .posts {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+      }
+      .post {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 18px;
+        background: #fff;
+        border: 3px solid var(--black);
+        box-shadow: var(--shadow);
+        padding: 18px 22px;
+        text-decoration: none;
+        color: var(--black);
+        transition: all 0.12s;
+      }
+      .post:hover {
+        transform: translate(-3px, -3px);
+        box-shadow: 9px 9px 0 var(--black);
+        background: var(--yellow);
+      }
+      .post .pt {
+        font-family: 'Archivo Black', sans-serif;
+        font-size: 19px;
+        line-height: 1.2;
+      }
+      .post .date {
+        font-family: 'Space Mono', monospace;
+        font-weight: 700;
+        font-size: 13px;
+        flex-shrink: 0;
+      }
+
+      footer {
+        border-top: 3px solid var(--black);
+        padding: 28px 0 48px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: 'Space Mono', monospace;
+        font-size: 13px;
+        font-weight: 700;
+      }
+      footer a {
+        color: var(--black);
+        background: var(--yellow);
+        padding: 2px 8px;
+        text-decoration: none;
+        border: 2px solid var(--black);
+        margin-left: 8px;
+      }
+      footer a:hover {
+        background: var(--red);
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="wrap">
+      <span class="logo">alpe.dev</span>
+      <ul>
+        <li><a href="#">BLOG</a></li>
+        <li><a href="#">CONTACTS</a></li>
+      </ul>
+    </nav>
+
+    <header class="hero wrap">
+      <span class="sticker s1">DAD v1.0.0 — SHIPPED APR 29</span>
+      <span class="sticker s2">100% ORGANIC BUGS</span>
+      <h1><span class="hl-y">Alberto</span><br /><span class="hl-b">Pertusi</span></h1>
+      <div class="role">TECHNICAL LEAD &amp; BUG MANUFACTURER™</div>
+      <p class="bio">
+        I build digital banking products at <strong>Banca AideXa</strong>, which means I break things in production with
+        regulatory consequences. Full-stack <strong>TypeScript</strong> enthusiast — yes, that's my whole personality.
+        Milan-based. Espresso-powered.
+      </p>
+    </header>
+
+    <div class="marquee">
+      <span>
+        TYPESCRIPT ★ <em>ESPRESSO</em> ★ SHIBA INU ★ <em>PROD ON FRIDAY</em> ★ MILAN ★ <em>EXISTENTIAL DREAD</em> ★
+        TYPESCRIPT ★ <em>ESPRESSO</em> ★ SHIBA INU ★ <em>PROD ON FRIDAY</em> ★ MILAN ★ <em>EXISTENTIAL DREAD</em> ★
+      </span>
+    </div>
+
+    <section class="wrap">
+      <h2>Vital Stats</h2>
+      <div class="cards">
+        <div class="card y">
+          <h3>👶 Dad Mode</h3>
+          <p>Sleep schedule now matches deploy schedule: completely unpredictable.</p>
+          <p class="mono">uptime: 67 days</p>
+        </div>
+        <div class="card">
+          <h3>🐕 Shiba Dept.</h3>
+          <p>I like dogs more than humans — a reasonable opinion once you've met both.</p>
+          <p class="mono">loyalty: verified</p>
+        </div>
+        <div class="card">
+          <h3>💍 Life Config</h3>
+          <p>Married to someone way out of my league. No rollback planned.</p>
+          <p class="mono">status: stable</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap">
+      <h2>Fresh Posts</h2>
+      <div class="posts">
+        <a class="post" href="#"
+          ><span class="pt">Your AI IDE Is a Backdoor</span><span class="date">2026-03-14</span></a
+        >
+        <a class="post" href="#"><span class="pt">I Made AI Watch Me Type</span><span class="date">2026-02-02</span></a>
+        <a class="post" href="#"
+          ><span class="pt">AI Is Not the Metaverse, But the Dealer Is the Same</span
+          ><span class="date">2026-01-11</span></a
+        >
+      </div>
+    </section>
+
+    <footer class="wrap">
+      <span>© 2026 ALPE.DEV</span>
+      <span><a href="#">GITHUB</a><a href="#">LINKEDIN</a><a href="#">RSS</a></span>
+    </footer>
+  </body>
+</html>
