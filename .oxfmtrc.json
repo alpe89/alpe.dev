@@ -6,5 +6,5 @@
   "trailingComma": "es5",
   "printWidth": 120,
   "experimentalSortPackageJson": false,
-  "ignorePatterns": [".next/**", "out/**", "build/**", "node_modules/**"]
+  "ignorePatterns": ["dist/**", "node_modules/**", "src/routeTree.gen.ts"]
 }
